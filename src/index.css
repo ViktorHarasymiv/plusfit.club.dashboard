@@ -1,0 +1,117 @@
+@import url("./styles/root.css");
+@import url("./styles/button.css");
+
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color: rgba(0, 0, 0, 0.87);
+
+  height: 100%;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+ul,
+li {
+  list-style: none;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+
+  font-family: "Inter";
+  font-weight: 400;
+  color: white;
+  font-optical-sizing: auto;
+
+  overflow: hidden;
+
+  height: 100%;
+}
+
+main {
+  flex: 1;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+input {
+  margin: 0;
+  padding: 0;
+}
+
+input:focus {
+  outline: none;
+
+  border-color: inherit;
+  color: inherit;
+}
+
+em {
+  font-style: normal;
+}
+
+h1,
+h2,
+h3,
+h3,
+h4,
+h5,
+h6 {
+  display: inline-block;
+}
+
+/* MUI DATE */
+
+.MuiFormLabel-root,
+.MuiPickersInputBase-root {
+  max-height: 49.5px;
+
+  font-size: 13px !important;
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+.MuiPickersOutlinedInput-notchedOutline {
+  border-width: 1px !important;
+  border-color: rgba(255, 255, 255, 0.8) !important;
+}
+.MuiSvgIcon-root {
+  width: 18px !important;
+  color: white !important;
+}
+
+.css-1ckov0h-MuiSvgIcon-root {
+  color: black !important;
+}
+
+/* Ширина скролу */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Трек (фон) */
+::-webkit-scrollbar-track {
+  background: #f0f0f0;
+  border-radius: 4px;
+}
+
+/* Повзунок */
+::-webkit-scrollbar-thumb {
+  background-color: #fd5f26;
+  border-radius: 4px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+/* При ховері */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #fd5f26;
+}

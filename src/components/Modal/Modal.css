@@ -1,0 +1,49 @@
+.overlay {
+  z-index: 1;
+  position: absolute;
+
+  top: 0;
+  bottom: 0;
+
+  left: 0;
+  right: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.content {
+  z-index: 2;
+
+  padding: 12px 14px;
+
+  width: 50vw;
+  height: 50vh;
+
+  display: flex;
+  flex-direction: column;
+
+  font-size: 13px;
+
+  position: relative;
+
+  transition: box-shadow 0.3s ease;
+
+  background-position: 0 170px !important;
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.3);
+}
+
+.close-btn {
+  width: 24px;
+  background: transparent;
+  border: none;
+
+  align-self: flex-end;
+}

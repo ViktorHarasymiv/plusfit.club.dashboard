@@ -1,0 +1,52 @@
+.put_module {
+  position: absolute;
+
+  display: flex;
+
+  gap: 20px;
+}
+
+.module_input {
+  background: rgba(255, 255, 255, 0.2);
+
+  border: 1px solid white;
+  border-radius: 6px;
+
+  padding: 5px 8px;
+
+  color: inherit;
+}
+
+.module_input:focus {
+  border-color: white;
+  color: white;
+}
+
+.module_input:focus::placeholder {
+  color: white;
+}
+
+.module_input::placeholder {
+  color: white;
+}
+
+.module_button {
+  cursor: pointer;
+  position: absolute;
+
+  top: 50%;
+  right: 10px;
+
+  transform: translateY(-43%);
+  background: transparent;
+
+  border: none;
+
+  font-size: 18px;
+
+  color: white;
+}
+
+.module_button:hover {
+  transform: translateY(-43%) scale(1.08);
+}

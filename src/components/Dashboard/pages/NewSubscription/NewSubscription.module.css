@@ -1,0 +1,128 @@
+.form {
+  padding: 30px;
+
+  margin-bottom: 30px;
+
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+
+  gap: 30px;
+
+  background: rgba(255, 255, 255, 0.1);
+
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+
+  backdrop-filter: blur(12px);
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.3);
+}
+
+.input {
+  background: transparent;
+
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 6px;
+  padding: 12px 18px;
+
+  width: 176px;
+  height: 24px;
+
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.input::placeholder {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.input_wrapper {
+  position: relative;
+
+  display: flex;
+  gap: 30px;
+  flex-wrap: nowrap;
+}
+
+.error {
+  position: absolute;
+
+  left: 10px;
+  bottom: -20px;
+
+  font-size: 10px;
+
+  color: white;
+}
+
+.date_wrapper {
+  display: flex;
+  gap: 30px;
+}
+
+.button {
+  transform: translateX(30px);
+  cursor: pointer;
+
+  width: 176px;
+  height: 34px;
+
+  font-weight: 600;
+
+  border: none;
+
+  background: transparent;
+
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+
+  border-radius: 6px;
+
+  border: 1px solid var(--white);
+
+  font-size: 16px;
+  color: white;
+
+  transition: all 0.1s ease;
+}
+
+.button:hover {
+  transform: translateX(20px) scale(1.03);
+}
+
+.id_wrapper {
+  position: relative;
+}
+
+.refresh_icon {
+  position: absolute;
+
+  top: 50%;
+  right: 15px;
+
+  transform: translateY(-50%);
+}
+
+.refresh_icon:active {
+  transform: translateY(-50%) scale(0.9);
+}
+
+.finally_block {
+  position: absolute;
+
+  bottom: 30px;
+
+  right: 30px;
+  padding-inline: 50px;
+  display: flex;
+  align-items: center;
+
+  justify-content: end;
+}
+
+.price_value {
+  display: flex;
+
+  gap: 5px;
+
+  font-weight: 600;
+}

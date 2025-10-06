@@ -1,0 +1,31 @@
+.button {
+  cursor: pointer;
+  padding: 4px 16px;
+  max-width: 176px;
+  max-height: 34px;
+
+  color: transparent;
+
+  font-weight: 600;
+  font-size: 13px;
+  border: none;
+
+  background: transparent;
+
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+
+  border-radius: 6px;
+
+  border: 1px solid var(--white);
+
+  color: rgba(255, 255, 255, 1);
+
+  transition: all 0.1s ease;
+}
+
+.button:hover {
+  transform: scale(1.05);
+  color: #ff7b00;
+  border-color: #ff7b00;
+}

@@ -1,0 +1,96 @@
+.sidebar {
+  max-width: 230px;
+  width: 100%;
+
+  margin-right: 30px;
+
+  border-right: 1px solid black;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar_nav {
+  padding-right: 20px;
+  margin-top: 50px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  flex: 1 1 100%;
+}
+
+.sidebar_nav ul {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 15px;
+}
+
+.nav_item {
+  padding: 8px 14px;
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  font-weight: 600;
+  font-size: 14px;
+  color: #000;
+
+  border: 1px solid transparent;
+
+  max-width: 100%;
+
+  font-size: 16px;
+
+  background: rgba(255, 255, 255, 0.4); /* прозорість */
+
+  border-radius: 6px; /* закруглені кути */
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* тінь */
+  backdrop-filter: blur(5px); /* розмиття фону */
+  -webkit-backdrop-filter: blur(5px); /* підтримка Safari */
+  border: 1px solid rgba(255, 255, 255, 0.3); /* світла рамка */
+
+  transition: all 0.03s ease-in-out;
+}
+
+.nav_item.active {
+  background: rgba(0, 0, 0, 0.8);
+
+  border: 1px solid white;
+
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  color: white;
+
+  transform: translateX(10px);
+}
+
+.logout {
+  padding-block: 14px;
+  border-top: 1px solid #000;
+}
+
+.logout_btn {
+  cursor: pointer;
+  padding: 4px 16px;
+  display: flex;
+  gap: 10px;
+
+  background: rgba(255, 255, 255, 0.4); /* прозорість */
+
+  border-radius: 6px; /* закруглені кути */
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* тінь */
+  backdrop-filter: blur(5px); /* розмиття фону */
+  -webkit-backdrop-filter: blur(5px); /* підтримка Safari */
+  border: 1px solid rgba(255, 255, 255, 0.3); /* світла рамка */
+
+  font-weight: 600;
+}
+
+.logout_btn:hover {
+  transform: scale(1.05);
+}
