@@ -8,9 +8,9 @@ import Logo from "../../../../public/logo/logoDark.png";
 
 import { MdHome } from "react-icons/md";
 import { FaUsers } from "react-icons/fa";
-import { FaPeopleGroup } from "react-icons/fa6";
+// import { FaPeopleGroup } from "react-icons/fa6";
 import { AiFillMessage } from "react-icons/ai";
-
+import { RiGalleryFill } from "react-icons/ri";
 import { LuLogOut } from "react-icons/lu";
 import { useAuth } from "../../../hooks/useAuth";
 
@@ -36,6 +36,30 @@ export default function Sidebar() {
               }
             >
               <FaUsers /> Абонементи
+            </NavLink>
+          </li>
+          {/* Messeges */}
+          <li>
+            <NavLink
+              to="/dashboard/message"
+              className={({ isActive }) =>
+                clsx(css.nav_item, isActive && css.active)
+              }
+            >
+              <AiFillMessage />
+              Повідомлення
+            </NavLink>
+          </li>
+          {/* Portfolio */}
+          <li>
+            <NavLink
+              to="/dashboard/portfolio"
+              className={({ isActive }) =>
+                clsx(css.nav_item, isActive && css.active)
+              }
+            >
+              <RiGalleryFill />
+              Портфоліо
             </NavLink>
           </li>
           {/* Trainers */}
@@ -87,7 +111,7 @@ export default function Sidebar() {
             </NavLink>
           </li> */}
           {/* Reviews */}
-          <li>
+          {/* <li>
             <NavLink
               to="/dashboard/reviews"
               className={({ isActive }) =>
@@ -97,19 +121,7 @@ export default function Sidebar() {
               <FaPeopleGroup />
               Відгуки
             </NavLink>
-          </li>
-          {/* Message */}
-          <li>
-            <NavLink
-              to="/dashboard/message"
-              className={({ isActive }) =>
-                clsx(css.nav_item, isActive && css.active)
-              }
-            >
-              <AiFillMessage />
-              Повідомлення
-            </NavLink>
-          </li>
+          </li> */}
           {/* New subscriber */}
           {/* <li>
             <NavLink

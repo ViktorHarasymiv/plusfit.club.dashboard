@@ -1,4 +1,4 @@
-.form {
+.form_block {
   padding: 30px;
 
   margin-bottom: 30px;
@@ -21,7 +21,7 @@
 .input {
   background: transparent;
 
-  border: 1px solid rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.8) !important;
   border-radius: 6px;
   padding: 12px 18px;
 
@@ -54,11 +54,6 @@
   color: white;
 }
 
-.date_wrapper {
-  display: flex;
-  gap: 30px;
-}
-
 .button {
   transform: translateX(30px);
   cursor: pointer;
@@ -80,13 +75,18 @@
   border: 1px solid var(--white);
 
   font-size: 16px;
-  color: white;
+  color: white !important;
 
   transition: all 0.1s ease;
 }
 
 .button:hover {
   transform: translateX(20px) scale(1.03);
+}
+
+.date_wrapper {
+  display: flex;
+  gap: 30px;
 }
 
 .id_wrapper {

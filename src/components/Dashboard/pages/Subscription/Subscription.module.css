@@ -25,34 +25,3 @@
   flex-direction: column;
   justify-content: space-between;
 }
-
-.buttons_wrapp {
-  margin-bottom: 35px;
-  display: flex;
-
-  gap: 20px;
-}
-
-.tabs_button {
-  padding: 4px 12px;
-  cursor: pointer;
-
-  max-width: 100%;
-
-  background: transparent;
-
-  border: none;
-
-  font-size: 16px;
-  font-weight: 600;
-
-  border-radius: 6px;
-
-  color: white;
-  border: 1px solid white;
-}
-
-.tabs_button.activeTab {
-  background: rgba(0, 0, 0, 0.8);
-  border-color: black;
-}

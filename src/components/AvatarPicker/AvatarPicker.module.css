@@ -1,0 +1,78 @@
+.avatar_picker_wrapper {
+  cursor: pointer;
+
+  margin-bottom: 8px;
+  position: relative;
+
+  gap: 12px;
+
+  width: 300px;
+  height: 150px;
+}
+
+.custom_avatar_input {
+  cursor: pointer;
+
+  overflow: hidden;
+  opacity: 0;
+
+  width: 300px;
+  height: 150px;
+
+  position: absolute;
+  top: 0;
+}
+
+.change_images {
+  padding: 30px 20px;
+  position: relative;
+
+  cursor: pointer;
+
+  display: flex;
+
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(255, 255, 255, 0.8) !important;
+
+  border-radius: 5px;
+}
+
+.photo {
+  width: 300px;
+  height: 150px;
+
+  border: 1px solid rgba(255, 255, 255, 0.8) !important;
+
+  object-fit: cover;
+  object-position: center;
+}
+
+.content_wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.user_name {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 140%;
+  letter-spacing: 0.01em;
+}
+
+@media screen and (min-width: 437.98px) {
+  .avatar_picker_wrapper {
+    flex-wrap: nowrap;
+    justify-content: start;
+    flex-direction: column;
+
+    gap: 24px;
+  }
+
+  .content_wrapper {
+    align-items: start;
+  }
+}

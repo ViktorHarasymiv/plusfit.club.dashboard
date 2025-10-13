@@ -1,5 +1,7 @@
 @import url("./styles/root.css");
 @import url("./styles/button.css");
+@import url("./styles/tab.css");
+@import url("./styles/form.css");
 
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;

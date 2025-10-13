@@ -3,7 +3,6 @@ import { useQuery } from "@tanstack/react-query";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useMessageStore } from "../../../../store/messageStore";
 
-import style from "../Subscription/Subscription.module.css";
 import clsx from "clsx";
 import { ClipLoader } from "react-spinners";
 
@@ -74,18 +73,15 @@ function Message() {
   };
 
   return (
-    <div className={style.subb_route_wrapp}>
+    <div className="subb_route_wrapp">
       <h1 className="">Повідомлення ({messages.length})</h1>
-      <div className={style.buttons_wrapp}>
+      <div className="buttons_wrapp">
         {tabsArray.map((item, i) => {
           return (
             <button
               key={i}
               onClick={() => setTab(item.id)}
-              className={clsx(
-                style.tabs_button,
-                tab === item.id && style.activeTab
-              )}
+              className={clsx("tabs_button", tab === item.id && "activeTab")}
             >
               {item.label}
             </button>

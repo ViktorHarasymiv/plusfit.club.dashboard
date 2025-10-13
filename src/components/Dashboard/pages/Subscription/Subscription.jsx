@@ -79,19 +79,15 @@ export default function Subscription() {
   ];
 
   return (
-    <div className={css.subb_route_wrapp}>
+    <div className="subb_route_wrapp">
       <h1>База абонементів</h1>
-
-      <div className={css.buttons_wrapp}>
+      <div className="buttons_wrapp">
         {tabsArray.map((item, i) => {
           return (
             <button
               key={i}
               onClick={() => setTab(item.id)}
-              className={clsx(
-                css.tabs_button,
-                tab === item.id && css.activeTab
-              )}
+              className={clsx("tabs_button", tab === item.id && "activeTab")}
             >
               {item.label}
             </button>

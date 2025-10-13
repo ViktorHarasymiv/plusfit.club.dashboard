@@ -10,6 +10,7 @@ import Subscription from "../components/Dashboard/pages/Subscription/Subscriptio
 import DashboardLayout from "../components/Dashboard/DashboardLayout";
 import Trainers from "../components/Dashboard/pages/Trainers/Trainers";
 import Message from "../components/Dashboard/pages/Message/Message";
+import Portfolio from "../components/Dashboard/pages/Portfolio/Portfolio";
 
 // import NotFound from "../NotFound/NotFound";
 
@@ -27,6 +28,7 @@ function Router() {
             <Route path="subscribers" element={<Subscription />} />
             <Route path="trainers" element={<Trainers />} />
             <Route path="message" element={<Message />} />
+            <Route path="portfolio" element={<Portfolio />} />
           </Route>
         </Route>
 

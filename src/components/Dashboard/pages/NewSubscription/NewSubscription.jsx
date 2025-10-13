@@ -1,9 +1,5 @@
 import { useMemo } from "react";
 
-// Styles
-
-import css from "./NewSubscription.module.css";
-
 // MEDIA
 
 import { IoMdRefresh } from "react-icons/io";
@@ -208,273 +204,253 @@ export default function NewSubscription() {
   });
 
   return (
-    <div>
-      <Formik
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-        onSubmit={async (values, { resetForm }) => {
-          try {
-            await CREATE_SUBSCRIPTER(values);
-            resetForm();
-            alert("Успішно додано абонемент");
-          } catch (error) {
-            const message = error?.message;
-            alert(message);
-          }
-        }}
-      >
-        {({ values, isValid, dirty, handleChange, setFieldValue }) => (
-          <Form>
-            <div className={css.form}>
-              {/* Дані клієнта */}
-              <h2>Дані клієнта</h2>
-              <div className={css.input_wrapper}>
-                <div className={css.input_wrapper}>
-                  <Field
-                    name="fullName"
-                    placeholder="Прізвище Ім'я"
-                    className={css.input}
-                  />
-                  <ErrorMessage
-                    name="fullName"
-                    component="div"
-                    className={css.error}
-                  />
-                </div>
-                <div className={css.input_wrapper}>
-                  <Field
-                    name="phone"
-                    placeholder="Телефон"
-                    className={css.input}
-                  />
-                  <ErrorMessage
-                    name="phone"
-                    component="div"
-                    className={css.error}
-                  />
-                </div>
-                <div className={css.input_wrapper}>
-                  <Field
-                    name="email"
-                    placeholder="Email"
-                    className={css.input}
-                  />
-                  <ErrorMessage
-                    name="email"
-                    component="div"
-                    className={css.error}
-                  />
-                </div>
-                <div className={css.input_wrapper}>
-                  <LocalizationProvider dateAdapter={AdapterDayjs}>
-                    <FormikDatePickerBirthday />
-                  </LocalizationProvider>
+    <Formik
+      initialValues={initialValues}
+      validationSchema={validationSchema}
+      onSubmit={async (values, { resetForm }) => {
+        try {
+          await CREATE_SUBSCRIPTER(values);
+          resetForm();
+          alert("Успішно додано абонемент");
+        } catch (error) {
+          const message = error?.message;
+          alert(message);
+        }
+      }}
+    >
+      {({ values, isValid, dirty, handleChange, setFieldValue }) => (
+        <Form>
+          <div className="form_block">
+            {/* Дані клієнта */}
+            <h2>Дані клієнта</h2>
+            <div className="input_wrapper">
+              <div className="input_wrapper">
+                <Field
+                  name="fullName"
+                  placeholder="Прізвище Ім'я"
+                  className="input"
+                />
+                <ErrorMessage
+                  name="fullName"
+                  component="div"
+                  className="error"
+                />
+              </div>
+              <div className="input_wrapper">
+                <Field name="phone" placeholder="Телефон" className="input" />
+                <ErrorMessage name="phone" component="div" className="error" />
+              </div>
+              <div className="input_wrapper">
+                <Field name="email" placeholder="Email" className="input" />
+                <ErrorMessage name="email" component="div" className="error" />
+              </div>
+              <div className="input_wrapper">
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <FormikDatePickerBirthday />
+                </LocalizationProvider>
 
-                  <ErrorMessage
-                    name="birthday"
-                    component="div"
-                    className={css.error}
-                  />
-                </div>
+                <ErrorMessage
+                  name="birthday"
+                  component="div"
+                  className="error"
+                />
+              </div>
+            </div>
+
+            {/* Тип підписки */}
+            <h2>Тип абонементу</h2>
+
+            <div className="input_wrapper">
+              {/* Айді */}
+              <div className="id_wrapper">
+                <Field
+                  name="clientId"
+                  placeholder="ID клієнта"
+                  className="input"
+                  disabled
+                />
+                <IoMdRefresh
+                  className="refresh_icon"
+                  onClick={() => {
+                    const newId = generateCustomId();
+                    setFieldValue("clientId", newId);
+                  }}
+                />
+                <ErrorMessage
+                  name="clientId"
+                  component="div"
+                  className="error"
+                />
               </div>
 
-              {/* Тип підписки */}
-              <h2>Тип абонементу</h2>
+              {/* Тип */}
 
-              <div className={css.input_wrapper}>
-                {/* Айді */}
-                <div className={css.id_wrapper}>
-                  <Field
-                    name="clientId"
-                    placeholder="ID клієнта"
-                    className={css.input}
-                    disabled
-                  />
-                  <IoMdRefresh
-                    className={css.refresh_icon}
-                    onClick={() => {
-                      const newId = generateCustomId();
-                      setFieldValue("clientId", newId);
-                    }}
-                  />
-                  <ErrorMessage
-                    name="clientId"
-                    component="div"
-                    className={css.error}
-                  />
-                </div>
-                {/* Тип */}
-                <div className={css.input_wrapper}>
-                  <FormControl sx={{ m: 1, width: 226, margin: "0px" }}>
-                    <Select
-                      name="type"
-                      value={values.type}
-                      onChange={(e) => {
-                        handleChange(e);
-                        setFieldValue(
-                          "price",
-                          getSubscriptionDetails(e.target.value)
-                        );
-                      }}
-                      displayEmpty
-                      inputProps={{ "aria-label": "Without label" }}
-                      MenuProps={{
-                        disableScrollLock: true,
-                      }}
-                      sx={{
-                        backgroundColor: "transparent",
-                        color: "rgba(255, 255, 255, 0.8);",
-
-                        padding: "12px 0",
-                        height: "49.5px",
-
-                        fontSize: "14px",
-
-                        borderRadius: "0",
-                        "& .MuiSelect-icon": {
-                          color: "rgba(255, 255, 255, 0.8);",
-                        },
-                        "&:hover .MuiOutlinedInput-notchedOutline": {
-                          borderColor: "rgba(255, 255, 255, 1)", // яскравіше при ховері
-                        },
-                        "&.Mui-focused .MuiSelect-icon": {
-                          color: "rgba(255, 255, 255, 0.8);",
-                        },
-
-                        ".MuiOutlinedInput-notchedOutline": {
-                          borderColor: "rgba(255, 255, 255, 0.8);",
-                          borderRadius: "6px",
-                        },
-                        "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                          borderWidth: "1px",
-                          borderColor: "rgba(255, 255, 255, 0.8)",
-                        },
-                      }}
-                    >
-                      <MenuItem value="">
-                        <em>Тип підписки</em>
-                      </MenuItem>
-                      <MenuItem value={"1 тренування"}>1 тренування</MenuItem>
-                      <MenuItem value={"10 тренувань"}>10 тренувань</MenuItem>
-                      <MenuItem value={"Місяць безліміт"}>
-                        Місяць безліміт
-                      </MenuItem>
-                      <MenuItem value={"Три місяці безліміт"}>
-                        Три місяці безліміт
-                      </MenuItem>
-                      <MenuItem value={"Тариф сімейний 1 + 1"}>
-                        Тариф сімейний 1 + 1
-                      </MenuItem>
-
-                      <MenuItem
-                        value={"Підлітковий 13–17 р."}
-                        disabled={age > 17 || 13 > age}
-                      >
-                        Підлітковий 13-17 р.
-                      </MenuItem>
-                      <MenuItem value={"Респект +55 р."} disabled={age < 55}>
-                        "Респект" +55 р.
-                      </MenuItem>
-                    </Select>
-                  </FormControl>
-                  <ErrorMessage
+              <div className="input_wrapper">
+                <FormControl sx={{ m: 1, width: 226, margin: "0px" }}>
+                  <Select
                     name="type"
-                    component="div"
-                    className={css.error}
-                  />
-                </div>
-                {/* Статус */}
-                <div className={css.input_wrapper}>
-                  <FormControl sx={{ m: 1, width: 226, margin: "0px" }}>
-                    <Select
-                      name="status"
-                      value={values.status}
-                      onChange={handleChange}
-                      displayEmpty
-                      inputProps={{ "aria-label": "Without label" }}
-                      MenuProps={{
-                        disableScrollLock: true,
-                      }}
-                      sx={{
-                        backgroundColor: "transparent",
+                    value={values.type}
+                    onChange={(e) => {
+                      handleChange(e);
+                      setFieldValue(
+                        "price",
+                        getSubscriptionDetails(e.target.value)
+                      );
+                    }}
+                    displayEmpty
+                    inputProps={{ "aria-label": "Without label" }}
+                    MenuProps={{
+                      disableScrollLock: true,
+                    }}
+                    sx={{
+                      backgroundColor: "transparent",
+                      color: "rgba(255, 255, 255, 0.8);",
 
-                        padding: "12px 0",
-                        height: "49.5px",
+                      padding: "12px 0",
+                      height: "49.5px",
 
-                        fontSize: "14px",
+                      fontSize: "14px",
+
+                      borderRadius: "0",
+                      "& .MuiSelect-icon": {
                         color: "rgba(255, 255, 255, 0.8);",
+                      },
+                      "&:hover .MuiOutlinedInput-notchedOutline": {
+                        borderColor: "rgba(255, 255, 255, 1)", // яскравіше при ховері
+                      },
+                      "&.Mui-focused .MuiSelect-icon": {
+                        color: "rgba(255, 255, 255, 0.8);",
+                      },
 
-                        borderRadius: "0",
-                        "& .MuiSelect-icon": {
-                          color: "rgba(255, 255, 255, 0.8);",
-                        },
-                        "&.Mui-focused .MuiSelect-icon": {
-                          color: "rgba(255, 255, 255, 0.8);",
-                        },
-                        ".MuiOutlinedInput-notchedOutline": {
-                          borderColor: "rgba(255, 255, 255, 0.8);",
-                          borderRadius: "6px",
-                        },
-                        "&:hover .MuiOutlinedInput-notchedOutline": {
-                          borderColor: "rgba(255, 255, 255, 1)", // яскравіше при ховері
-                        },
-                        "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                          borderWidth: "1px",
-                          borderColor: "rgba(255, 255, 255, 0.8)",
-                        },
-                      }}
+                      ".MuiOutlinedInput-notchedOutline": {
+                        borderColor: "rgba(255, 255, 255, 0.8);",
+                        borderRadius: "6px",
+                      },
+                      "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                        borderWidth: "1px",
+                        borderColor: "rgba(255, 255, 255, 0.8)",
+                      },
+                    }}
+                  >
+                    <MenuItem value="">
+                      <em>Тип підписки</em>
+                    </MenuItem>
+                    <MenuItem value={"1 тренування"}>1 тренування</MenuItem>
+                    <MenuItem value={"10 тренувань"}>10 тренувань</MenuItem>
+                    <MenuItem value={"Місяць безліміт"}>
+                      Місяць безліміт
+                    </MenuItem>
+                    <MenuItem value={"Три місяці безліміт"}>
+                      Три місяці безліміт
+                    </MenuItem>
+                    <MenuItem value={"Тариф сімейний 1 + 1"}>
+                      Тариф сімейний 1 + 1
+                    </MenuItem>
+
+                    <MenuItem
+                      value={"Підлітковий 13–17 р."}
+                      disabled={age > 17 || 13 > age}
                     >
-                      <MenuItem value="">
-                        <em>Статус</em>
-                      </MenuItem>
-                      <MenuItem value={"Активний"}>Активний</MenuItem>
-                      <MenuItem value={"Завершений"}>Завершений</MenuItem>
-                      <MenuItem value={"Заморожений"}>Заморожений</MenuItem>
-                      <MenuItem value={"Очікує оплати"}>Очікує оплати</MenuItem>
-                    </Select>
-                  </FormControl>
-                  <ErrorMessage
+                      Підлітковий 13-17 р.
+                    </MenuItem>
+                    <MenuItem value={"Респект +55 р."} disabled={age < 55}>
+                      "Респект" +55 р.
+                    </MenuItem>
+                  </Select>
+                </FormControl>
+                <ErrorMessage name="type" component="div" className="error" />
+              </div>
+
+              {/* Статус */}
+
+              <div className="input_wrapper">
+                <FormControl sx={{ m: 1, width: 226, margin: "0px" }}>
+                  <Select
                     name="status"
-                    component="div"
-                    className={css.error}
-                  />
-                </div>
+                    value={values.status}
+                    onChange={handleChange}
+                    displayEmpty
+                    inputProps={{ "aria-label": "Without label" }}
+                    MenuProps={{
+                      disableScrollLock: true,
+                    }}
+                    sx={{
+                      backgroundColor: "transparent",
+
+                      padding: "12px 0",
+                      height: "49.5px",
+
+                      fontSize: "14px",
+                      color: "rgba(255, 255, 255, 0.8);",
+
+                      borderRadius: "0",
+                      "& .MuiSelect-icon": {
+                        color: "rgba(255, 255, 255, 0.8);",
+                      },
+                      "&.Mui-focused .MuiSelect-icon": {
+                        color: "rgba(255, 255, 255, 0.8);",
+                      },
+                      ".MuiOutlinedInput-notchedOutline": {
+                        borderColor: "rgba(255, 255, 255, 0.8);",
+                        borderRadius: "6px",
+                      },
+                      "&:hover .MuiOutlinedInput-notchedOutline": {
+                        borderColor: "rgba(255, 255, 255, 1)", // яскравіше при ховері
+                      },
+                      "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                        borderWidth: "1px",
+                        borderColor: "rgba(255, 255, 255, 0.8)",
+                      },
+                    }}
+                  >
+                    <MenuItem value="">
+                      <em>Статус</em>
+                    </MenuItem>
+                    <MenuItem value={"Активний"}>Активний</MenuItem>
+                    <MenuItem value={"Завершений"}>Завершений</MenuItem>
+                    <MenuItem value={"Заморожений"}>Заморожений</MenuItem>
+                    <MenuItem value={"Очікує оплати"}>Очікує оплати</MenuItem>
+                  </Select>
+                </FormControl>
+                <ErrorMessage name="status" component="div" className="error" />
+              </div>
+            </div>
+
+            {/* Початкова дата */}
+            <h2>Тривалість</h2>
+            <div className="date_wrapper">
+              <div className="input_wrapper">
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <FormikDatePickerStart />
+                </LocalizationProvider>
+
+                <ErrorMessage
+                  name="startDate"
+                  component="div"
+                  className="error"
+                />
               </div>
 
-              {/* Початкова дата */}
-              <h2>Тривалість</h2>
-              <div className={css.date_wrapper}>
-                <div className={css.input_wrapper}>
-                  <LocalizationProvider dateAdapter={AdapterDayjs}>
-                    <FormikDatePickerStart />
-                  </LocalizationProvider>
+              {/* Кінцева дата */}
 
-                  <ErrorMessage
-                    name="startDate"
-                    component="div"
-                    className={css.error}
-                  />
-                </div>
+              <div className="input_wrapper">
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <FormikDatePickerEnd />
+                </LocalizationProvider>
 
-                {/* Кінцева дата */}
-                <div className={css.input_wrapper}>
-                  <LocalizationProvider dateAdapter={AdapterDayjs}>
-                    <FormikDatePickerEnd />
-                  </LocalizationProvider>
-
-                  <ErrorMessage
-                    name="endDate"
-                    component="div"
-                    className={css.error}
-                  />
-                </div>
+                <ErrorMessage
+                  name="endDate"
+                  component="div"
+                  className="error"
+                />
               </div>
+            </div>
 
-              <h2>Оплата</h2>
+            <h2>Оплата</h2>
 
-              {/* Ціна */}
-              <div className={css.input_wrapper}>
-                {/* <Field
+            {/* Ціна */}
+            <div className="input_wrapper">
+              {/* <Field
                   name="price"
                   type="text"
                   value={values.price}
@@ -488,82 +464,77 @@ export default function NewSubscription() {
                   className={css.error}
                 /> */}
 
-                {/* Метод оплати */}
+              {/* Метод оплати */}
 
-                <div className={css.input_wrapper}>
-                  <FormControl sx={{ m: 1, width: 226, margin: "0px" }}>
-                    <Select
-                      name="method"
-                      value={values.method}
-                      onChange={handleChange}
-                      displayEmpty
-                      inputProps={{ "aria-label": "Without label" }}
-                      MenuProps={{
-                        disableScrollLock: true,
-                      }}
-                      sx={{
-                        backgroundColor: "transparent",
-                        color: "rgba(255, 255, 255, 0.8)",
-
-                        padding: "12px 0",
-                        width: "226px",
-                        height: "49.5px",
-
-                        fontSize: "14px",
-
-                        borderRadius: "0",
-                        "& .MuiSelect-icon": {
-                          color: " rgba(255, 255, 255, 0.8)",
-                        },
-                        "&.Mui-focused .MuiSelect-icon": {
-                          color: " rgba(255, 255, 255, 0.8)",
-                        },
-
-                        "&:hover .MuiOutlinedInput-notchedOutline": {
-                          borderColor: "rgba(255, 255, 255, 1)", // яскравіше при ховері
-                        },
-                        ".MuiOutlinedInput-notchedOutline": {
-                          borderRadius: "6px",
-                          borderColor: " rgba(255, 255, 255, 0.8)",
-                        },
-                        "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                          borderWidth: "1px",
-                          borderColor: "rgba(255, 255, 255, 0.8);",
-                        },
-                      }}
-                    >
-                      <MenuItem value="">
-                        <em>Метод оплати</em>
-                      </MenuItem>
-                      <MenuItem value={"Готівка"}>Готівка</MenuItem>
-                      <MenuItem value={"Картка"}>Картка</MenuItem>
-                    </Select>
-                  </FormControl>
-                  <ErrorMessage
+              <div className="input_wrapper">
+                <FormControl sx={{ m: 1, width: 226, margin: "0px" }}>
+                  <Select
                     name="method"
-                    component="div"
-                    className={css.error}
-                  />
-                </div>
+                    value={values.method}
+                    onChange={handleChange}
+                    displayEmpty
+                    inputProps={{ "aria-label": "Without label" }}
+                    MenuProps={{
+                      disableScrollLock: true,
+                    }}
+                    sx={{
+                      backgroundColor: "transparent",
+                      color: "rgba(255, 255, 255, 0.8)",
+
+                      padding: "12px 0",
+                      width: "226px",
+                      height: "49.5px",
+
+                      fontSize: "14px",
+
+                      borderRadius: "0",
+                      "& .MuiSelect-icon": {
+                        color: " rgba(255, 255, 255, 0.8)",
+                      },
+                      "&.Mui-focused .MuiSelect-icon": {
+                        color: " rgba(255, 255, 255, 0.8)",
+                      },
+
+                      "&:hover .MuiOutlinedInput-notchedOutline": {
+                        borderColor: "rgba(255, 255, 255, 1)", // яскравіше при ховері
+                      },
+                      ".MuiOutlinedInput-notchedOutline": {
+                        borderRadius: "6px",
+                        borderColor: " rgba(255, 255, 255, 0.8)",
+                      },
+                      "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                        borderWidth: "1px",
+                        borderColor: "rgba(255, 255, 255, 0.8);",
+                      },
+                    }}
+                  >
+                    <MenuItem value="">
+                      <em>Метод оплати</em>
+                    </MenuItem>
+                    <MenuItem value={"Готівка"}>Готівка</MenuItem>
+                    <MenuItem value={"Картка"}>Картка</MenuItem>
+                  </Select>
+                </FormControl>
+                <ErrorMessage name="method" component="div" className="error" />
               </div>
-
-              {/* Відправити */}
-
-              {isValid && dirty && (
-                <div className={css.finally_block}>
-                  <div className={css.price_value}>
-                    <span>Сумма: {values.price}</span>
-                    <span>{values.currency}</span>
-                  </div>
-                  <button type="submit" className={css.button}>
-                    Додати абонемент
-                  </button>
-                </div>
-              )}
             </div>
-          </Form>
-        )}
-      </Formik>
-    </div>
+
+            {/* Відправити */}
+
+            {isValid && dirty && (
+              <div className="finally_block">
+                <div className="price_value">
+                  <span>Сумма: {values.price}</span>
+                  <span>{values.currency}</span>
+                </div>
+                <button type="submit" className="button">
+                  Додати абонемент
+                </button>
+              </div>
+            )}
+          </div>
+        </Form>
+      )}
+    </Formik>
   );
 }
