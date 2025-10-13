@@ -6,26 +6,23 @@ import { usePortfolioStore } from "../../../../store/portfolioStore";
 function AllPhoto() {
   // const queryClient = useQueryClient();
 
-  const { fetchPortfolio, portfolio } = usePortfolioStore();
+  const { fetchPortfolio, deletePhoto, portfolio } = usePortfolioStore();
 
   useEffect(() => {
     fetchPortfolio();
   }, []);
 
-  // useQuery({
-  //   queryKey: ["portfolio"],
-  //   queryFn: () => fetchPortfolio(),
-  //   select: (data) => data.result.data,
-  // });
-
   return (
     <div>
-      {portfolio.map(({ alt, section, photo }, index) => {
+      {portfolio.map(({ _id, alt, section, photo }, index) => {
         return (
           <div key={index}>
             <img src={photo} width={250} height={150} alt={alt} />
             <p>{alt}</p>
             <p>{section}</p>
+            <button type="button" onClick={() => deletePhoto(_id, photo)}>
+              Видали мене
+            </button>
           </div>
         );
       })}

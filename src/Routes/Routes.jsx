@@ -3,7 +3,6 @@ import { Routes, Route } from "react-router-dom";
 
 import Dashboard from "../components/Dashboard/Dashboard";
 
-import Login from "../components/Login/Login";
 import PrivateRoute from "../components/PrivateRoute";
 import Home from "../components/Home/Home";
 import Subscription from "../components/Dashboard/pages/Subscription/Subscription";
@@ -19,7 +18,7 @@ function Router() {
     <>
       <Routes>
         {/* Публічні сторінки */}
-        <Route path="/login" element={<Home />} />
+        <Route path="/" element={<Home />} />
 
         {/* Захищені маршрути */}
         <Route path="/dashboard" element={<PrivateRoute />}>

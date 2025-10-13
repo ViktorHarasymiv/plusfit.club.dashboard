@@ -36,7 +36,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logout = async () => {
-    navigate("/login");
+    navigate("/");
     setHasAccess(false);
     setUser(null);
     await logoutRequest();

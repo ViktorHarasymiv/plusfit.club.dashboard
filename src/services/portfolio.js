@@ -17,6 +17,8 @@ export const GET_PORTFOLIO = async () => {
   }
 };
 
+//
+
 export const ADD_PHOTO = async (data) => {
   try {
     const response = await axios.post(`${API_URL}/portfolio`, data);
@@ -32,14 +34,18 @@ export const ADD_PHOTO = async (data) => {
 
 // DELETE
 
-export const DELETE_MESSAGE = async ({ messageId }) => {
+export const DELETE_PHOTO = async (photoId, filename) => {
   try {
-    const response = await axios.delete(`${API_URL}/message/${messageId}`);
+    const response = await axios.delete(`${API_URL}/portfolio/${photoId}`, {
+      data: { filename },
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
     return response.data;
   } catch (error) {
-    const message =
-      error.response?.data?.message || "Не вдалося усунути повідомлення";
-    console.error("❌ Помилка:", message);
-    throw new Error(message);
+    const photo = error.response?.data?.message || "Не вдалося усунути фото";
+    console.error("❌ Помилка:", photo);
+    throw new Error(photo);
   }
 };

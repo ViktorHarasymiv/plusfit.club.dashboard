@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { GET_PORTFOLIO } from "../services/portfolio";
+import { DELETE_PHOTO, GET_PORTFOLIO } from "../services/portfolio";
 
 export const usePortfolioStore = create((set) => ({
   portfolio: [],
@@ -18,21 +18,16 @@ export const usePortfolioStore = create((set) => ({
       set({ error: portfolio, loading: false });
     }
   },
-
-  //   deleteMessage: async (messageId) => {
-  //     try {
-  //       await DELETE_MESSAGE({ messageId });
-
-  //       const filteredMessages = get().messages.filter(
-  //         (msg) => msg._id !== messageId
-  //       );
-  //       set({ messages: filteredMessages });
-  //     } catch (error) {
-  //       const message =
-  //         error?.response?.data?.message || "Не вдалося видалити повідомлення";
-  //       set({ error: message });
-  //     }
-  //   },
-
   setPage: (page) => set({ page }),
+
+  deletePhoto: async (photoId, filename) => {
+    set({ loading: true, error: null });
+    try {
+      const res = await DELETE_PHOTO(photoId, filename);
+      set({ data: res.data.result.data, loading: false });
+    } catch (error) {
+      error?.response?.data?.portfolio || "Помилка усунені фото";
+      set({ error: "Помилка при видалені", loading: false });
+    }
+  },
 }));

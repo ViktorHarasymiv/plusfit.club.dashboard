@@ -7,7 +7,7 @@ const PrivateRoute = () => {
 
   if (hasAccess === null) return "Завантаження.....";
 
-  return hasAccess ? <Outlet /> : <Navigate to="/login" />;
+  return hasAccess ? <Outlet /> : <Navigate to="/" />;
 };
 
 export default PrivateRoute;
