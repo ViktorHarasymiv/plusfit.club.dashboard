@@ -3,6 +3,8 @@ import React, { useEffect } from "react";
 // import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { usePortfolioStore } from "../../../../store/portfolioStore";
 
+import css from "./Style.module.css";
+
 function AllPhoto() {
   // const queryClient = useQueryClient();
 
@@ -13,15 +15,25 @@ function AllPhoto() {
   }, []);
 
   return (
-    <div>
+    <div className={css.wrapper}>
       {portfolio.map(({ _id, alt, section, photo }, index) => {
         return (
-          <div key={index}>
-            <img src={photo} width={250} height={150} alt={alt} />
+          <div key={index} className={css.images_block}>
+            <img
+              src={photo}
+              width={250}
+              height={170}
+              alt={alt}
+              className={css.image}
+            />
             <p>{alt}</p>
             <p>{section}</p>
-            <button type="button" onClick={() => deletePhoto(_id, photo)}>
-              Видали мене
+            <button
+              type="button"
+              onClick={() => deletePhoto(_id, photo)}
+              className="button"
+            >
+              Видалити
             </button>
           </div>
         );

@@ -55,7 +55,6 @@
 }
 
 .button {
-  transform: translateX(30px);
   cursor: pointer;
 
   width: 176px;
@@ -81,7 +80,7 @@
 }
 
 .button:hover {
-  transform: translateX(20px) scale(1.03);
+  transform: scale(1.02);
 }
 
 .date_wrapper {
