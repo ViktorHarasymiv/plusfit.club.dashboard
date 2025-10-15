@@ -16,8 +16,11 @@
 }
 
 .main-content {
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  width: 100%;
+
   display: flex;
   flex-direction: column;
-
-  flex: 1;
 }

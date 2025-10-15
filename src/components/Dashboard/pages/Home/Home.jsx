@@ -1,8 +1,7 @@
-import React from "react";
+import { Link } from "react-router-dom";
 import { useMessageStore } from "../../../../store/messageStore";
 
 import css from "./Style.module.css";
-import { GET_MESSAGE } from "../../../../services/message";
 import { useEffect } from "react";
 
 function Home() {
@@ -16,7 +15,9 @@ function Home() {
     <div className={css.wrapper}>
       <div className={css.message_wrapper}>
         <div className={css.tile}>
-          <h2>Повідомлень: {messages.length} </h2>
+          <div className={css.tile_wrapper}>
+            <Link to="/dashboard/message">Пошта ({messages.length})</Link>
+          </div>
         </div>
       </div>
     </div>
