@@ -48,7 +48,6 @@ export const CREATE_SUBSCRIPTER = async (data) => {
     return response.data;
   } catch (error) {
     console.log(error);
-
     throw new Error("Під цими даними вже зареєстровано абонемент");
   }
 };

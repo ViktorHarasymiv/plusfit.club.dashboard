@@ -1,96 +1,157 @@
 .sidebar {
-  max-width: 230px;
-  width: 100%;
+  overflow: hidden;
 
-  margin-right: 30px;
-
-  border-right: 1px solid black;
+  width: 80px;
+  height: 100%;
 
   display: flex;
   flex-direction: column;
+
+  border-right: 1px solid rgba(0, 0, 0, 0.25);
+
+  background: #353c48;
+
+  transition: left 0.3s ease, width 0.3s ease;
+}
+
+.sidebarHover {
+  width: 230px !important;
+}
+
+.app_brand {
+  padding-inline: 1em;
+
+  height: 70px;
+
+  overflow: hidden;
+
+  display: flex;
+
+  align-items: center;
+  background: #303641;
+
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+}
+
+.sidebar_profile {
+  display: flex;
+  align-items: center;
+
+  padding: 1rem;
+
+  margin: 0 0 0.5rem 0;
+}
+
+.profile_info h6 {
+  white-space: nowrap;
+}
+
+.avatar {
+  margin-right: 1rem;
+
+  width: 3rem;
+  height: 3rem;
+
+  border-radius: var(--bs-border-radius-lg);
 }
 
 .sidebar_nav {
-  padding-right: 20px;
-  margin-top: 50px;
-
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
-  flex: 1 1 100%;
 }
 
 .sidebar_nav ul {
   display: flex;
 
   flex-direction: column;
-
-  gap: 15px;
 }
 
 .nav_item {
-  padding: 8px 14px;
+  padding-left: 30px;
+
+  height: 50px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  gap: 10px;
+
+  transition: all 0.03s ease-in-out;
+
+  border-radius: 0 30px 30px 0;
+}
+
+.nav_item span {
+  width: 100%;
+
   display: flex;
   align-items: center;
 
   gap: 10px;
 
-  font-weight: 600;
-  font-size: 14px;
-  color: #000;
+  white-space: nowrap !important;
+}
 
-  border: 1px solid transparent;
+.nav_item svg {
+  min-width: 22px;
+  height: 22px;
+}
 
-  max-width: 100%;
-
-  font-size: 16px;
-
-  background: rgba(255, 255, 255, 0.4); /* прозорість */
-
-  border-radius: 6px; /* закруглені кути */
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* тінь */
-  backdrop-filter: blur(5px); /* розмиття фону */
-  -webkit-backdrop-filter: blur(5px); /* підтримка Safari */
-  border: 1px solid rgba(255, 255, 255, 0.3); /* світла рамка */
-
-  transition: all 0.03s ease-in-out;
+.nav_item:hover {
+  color: #fff;
+  background: #0c7fa8;
 }
 
 .nav_item.active {
-  background: rgba(0, 0, 0, 0.8);
-
-  border: 1px solid white;
-
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
-    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-  color: white;
-
-  transform: translateX(10px);
+  color: #fff;
+  background: #0c7fa8;
 }
 
-.logout {
-  padding-block: 14px;
-  border-top: 1px solid #000;
-}
-
-.logout_btn {
+.burger_button {
+  display: none;
   cursor: pointer;
-  padding: 4px 16px;
-  display: flex;
-  gap: 10px;
 
-  background: rgba(255, 255, 255, 0.4); /* прозорість */
+  padding-inline: 0.6em;
+  padding-block: 0.4rem;
 
-  border-radius: 6px; /* закруглені кути */
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* тінь */
-  backdrop-filter: blur(5px); /* розмиття фону */
-  -webkit-backdrop-filter: blur(5px); /* підтримка Safari */
-  border: 1px solid rgba(255, 255, 255, 0.3); /* світла рамка */
+  align-items: center;
 
-  font-weight: 600;
+  border-radius: var(--bs-border-radius-sm);
+
+  background: transparent;
+
+  border: 1px solid #3eaad1;
 }
 
-.logout_btn:hover {
-  transform: scale(1.05);
+.burger_button:hover {
+  background: #3eaad1;
+}
+
+.burger_button svg {
+  color: #fff;
+  font-size: 1.125rem !important;
+}
+
+@media screen and (max-width: 767.98px) {
+  .sidebar {
+    z-index: 9999 !important;
+
+    position: absolute !important;
+    min-width: 0px !important;
+    width: 70vh;
+  }
+
+  .app_brand {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+
+    justify-content: space-between;
+  }
+
+  .burger_button {
+    display: block;
+  }
 }

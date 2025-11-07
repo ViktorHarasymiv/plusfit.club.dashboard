@@ -1,31 +1,57 @@
+import axios from "axios";
 import { API_URL } from "../config/api";
 
+// CHECK SESSION
+
 export const checkSession = async () => {
-  const response = await fetch(`${API_URL}/auth/check-session`, {
-    method: "GET",
-    credentials: "include",
-  });
-
-  if (!response.ok) throw new Error("Session check failed");
-  return await response.json();
+  try {
+    const res = await axios.get(`${API_URL}/auth/admin/session`, {
+      withCredentials: true,
+    });
+    return res.data.success;
+  } catch (err) {
+    if (err.response?.status === 401) {
+      return false;
+    }
+    throw err;
+  }
 };
 
-export const loginRequest = async (email, password) => {
-  const response = await fetch(`${API_URL}/auth/login`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ email, password }),
-    credentials: "include",
-  });
+// LOGIN
 
-  const result = await response.json();
-  if (!response.ok) throw new Error(result.message);
-  return result;
+export const login = async (data) => {
+  const res = await axios.post(`${API_URL}/auth/admin/login`, data, {
+    withCredentials: true,
+  });
+  return res.data;
 };
 
-export const logoutRequest = async () => {
-  await fetch(`${API_URL}/auth/logout`, {
-    method: "POST",
-    credentials: "include",
+// RERFRESH SEEEION
+
+export const refreshSession = async () => {
+  const res = await axios.post(
+    `${API_URL}/auth/refresh`,
+    {},
+    {
+      withCredentials: true,
+    }
+  );
+
+  return res.data;
+};
+
+// AUTH ME
+
+export const getMe = async () => {
+  const { data } = await axios.get(`${API_URL}/users/admin/me`, {
+    withCredentials: true,
   });
+
+  return data;
+};
+
+// LOGOUT
+
+export const logout = async () => {
+  await axios.post(`${API_URL}/auth/logout`, {}, { withCredentials: true });
 };

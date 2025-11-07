@@ -1,13 +1,12 @@
-import { useAuth } from "../hooks/useAuth";
-
 import { Navigate, Outlet } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 const PrivateRoute = () => {
-  const { hasAccess } = useAuth();
+  const { authorized } = useAuth();
 
-  if (hasAccess === null) return "Завантаження.....";
+  if (authorized === null) return "Завантаження.....";
 
-  return hasAccess ? <Outlet /> : <Navigate to="/" />;
+  return authorized ? <Outlet /> : <Navigate to="/" />;
 };
 
 export default PrivateRoute;

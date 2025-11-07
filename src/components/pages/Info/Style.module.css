@@ -1,0 +1,56 @@
+.wrapper {
+  overflow: hidden;
+
+  display: flex;
+  justify-content: space-between;
+
+  gap: 15px;
+}
+
+.tile {
+  width: 25%;
+
+  display: flex;
+  flex-direction: row;
+
+  justify-content: space-between;
+  background: #303641;
+
+  border-radius: 6px;
+
+  border-radius: 4px;
+
+  backdrop-filter: blur(12px);
+}
+
+.tile_wrapper {
+  width: 100%;
+  padding: 1rem;
+
+  display: flex;
+
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+
+  align-items: end;
+
+  border-radius: 0.5em;
+}
+
+.tile_wrapper svg {
+  color: var(--bs-primary);
+  font-size: 2.25rem;
+}
+
+.tile_title_wrapper {
+  display: flex;
+  flex-direction: column;
+
+  gap: 10px;
+}
+
+.tile_wrapper span {
+  font-weight: 500;
+  font-size: 24px;
+}

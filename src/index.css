@@ -3,14 +3,19 @@
 @import url("./styles/tab.css");
 @import url("./styles/form.css");
 
-:root {
+#root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+
   line-height: 1.5;
   font-weight: 400;
 
-  color: rgba(0, 0, 0, 0.87);
+  min-width: 100%;
+  min-height: 100%;
 
-  height: 100%;
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: row;
 }
 
 * {
@@ -24,26 +29,35 @@ li {
 }
 
 body {
+  overflow-x: hidden;
+
   padding: 0;
   margin: 0;
 
   font-family: "Inter";
   font-weight: 400;
-  color: white;
   font-optical-sizing: auto;
 
-  overflow: hidden;
-
+  width: 100%;
   height: 100%;
+
+  background-color: #353c48;
+  color: var(--bs-body-color);
 }
 
 main {
-  flex: 1;
+  height: 100vh;
 }
 
 a {
   text-decoration: none;
   color: inherit;
+}
+img {
+  max-width: 100%;
+  max-height: 100%;
+
+  object-fit: cover;
 }
 
 input {
@@ -70,6 +84,27 @@ h4,
 h5,
 h6 {
   display: inline-block;
+
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--bs-heading-color);
+}
+
+h5 {
+  color: inherit;
+  font-size: 1.125rem;
+}
+
+.footer {
+  padding: 0 1.5rem 1rem 1.5rem;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+
+  font-size: 0.8em;
 }
 
 /* MUI DATE */

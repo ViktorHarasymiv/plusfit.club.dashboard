@@ -1,30 +1,100 @@
 import { Link, NavLink } from "react-router-dom";
 
+import { useWindowWidth } from "../../../hooks/useWindowWidth";
+
 import clsx from "clsx";
 
 import css from "./Sidebar.module.css";
 
-import Logo from "../../../../public/logo/logoDark.png";
+import Logo from "/logo/logoLight.png";
+
+import UserAvatar from "/img/user3.png";
 
 import { MdHome } from "react-icons/md";
 import { FaUsers } from "react-icons/fa";
-// import { FaPeopleGroup } from "react-icons/fa6";
+import { FaImages } from "react-icons/fa";
 import { AiFillMessage } from "react-icons/ai";
 import { RiGalleryFill } from "react-icons/ri";
-import { LuLogOut } from "react-icons/lu";
-import { useAuth } from "../../../hooks/useAuth";
+import { FaList } from "react-icons/fa";
+
+import { useAuth } from "../../../context/AuthContext";
+import { useMenuStore } from "../../../store/useMenuStore";
+
+import { RxHamburgerMenu } from "react-icons/rx";
 
 export default function Sidebar() {
-  const { logout } = useAuth();
+  const width = useWindowWidth();
+  const { user, getLogout } = useAuth();
+
+  const isMobile = width < 767.98;
+
+  const { isPinned, isHover, setIsHover, togglePinned } = useMenuStore();
+
+  const handleMouseToggle = (event) => {
+    if (isHover === false && isPinned == true && event.type === "mouseenter") {
+      setIsHover(true);
+    } else return;
+  };
+
+  const handleMouseToggleLeave = (event) => {
+    if (isHover === true && isPinned == true && event.type === "mouseleave") {
+      setIsHover(false);
+    } else return;
+  };
 
   return (
-    <div className={css.sidebar}>
-      <img src={Logo} alt="" width={100} height={40} />
+    <header
+      onMouseEnter={handleMouseToggle}
+      onMouseLeave={handleMouseToggleLeave}
+      className={`${css.sidebar} ${isHover ? css.sidebarHover : ""}`}
+      style={{
+        zIndex: isPinned || isHover ? "9999" : "1",
+        position: isPinned || isHover || isMobile ? "fixed" : "static",
+        minWidth: isPinned ? "80px" : "230px",
+        width: !isPinned && isMobile ? "70vw" : "0px",
+      }}
+    >
+      <div className={css.app_brand}>
+        <Link to="/dashboard/info">
+          <img src={Logo} alt="Company logo" width={100} />
+        </Link>
+        <button
+          onClick={() => togglePinned()}
+          type="button"
+          className={css.burger_button}
+        >
+          <RxHamburgerMenu />
+        </button>
+      </div>
+      <div className={css.sidebar_profile}>
+        <img src={UserAvatar} alt="Avatar" className={css.avatar} />
+
+        <div
+          className={css.profile_info}
+          style={{ display: isPinned && !isHover ? "none" : "block" }}
+        >
+          <p>Hello 👋</p>
+          <h6>Mr.{user.name}</h6>
+        </div>
+      </div>
       <nav className={css.sidebar_nav}>
         <ul>
+          {/* Info */}
           <li>
-            <NavLink to="/dashboard" className={css.nav_item}>
-              <MdHome /> Головна
+            <NavLink
+              to="/dashboard/info"
+              className={({ isActive }) =>
+                clsx(css.nav_item, isActive && css.active)
+              }
+            >
+              <span>
+                <MdHome />
+                <span
+                  style={{ display: isPinned && !isHover ? "none" : "block" }}
+                >
+                  Dashboard
+                </span>
+              </span>
             </NavLink>
           </li>
           {/* Subscriber */}
@@ -35,7 +105,14 @@ export default function Sidebar() {
                 clsx(css.nav_item, isActive && css.active)
               }
             >
-              <FaUsers /> Абонементи
+              <span>
+                <FaUsers />
+                <span
+                  style={{ display: isPinned && !isHover ? "none" : "block" }}
+                >
+                  Subscriber
+                </span>
+              </span>
             </NavLink>
           </li>
           {/* Messeges */}
@@ -46,8 +123,14 @@ export default function Sidebar() {
                 clsx(css.nav_item, isActive && css.active)
               }
             >
-              <AiFillMessage />
-              Повідомлення
+              <span>
+                <AiFillMessage />
+                <span
+                  style={{ display: isPinned && !isHover ? "none" : "block" }}
+                >
+                  Messeges
+                </span>
+              </span>
             </NavLink>
           </li>
           {/* Portfolio */}
@@ -58,91 +141,54 @@ export default function Sidebar() {
                 clsx(css.nav_item, isActive && css.active)
               }
             >
-              <RiGalleryFill />
-              Портфоліо
+              <span>
+                <RiGalleryFill />
+                <span
+                  style={{ display: isPinned && !isHover ? "none" : "block" }}
+                >
+                  Portfolio
+                </span>
+              </span>
             </NavLink>
           </li>
-          {/* Trainers */}
-          {/* <li>
-            <NavLink
-              to="/dashboard/trainers"
-              className={({ isActive }) =>
-                clsx(css.nav_item, isActive && css.active)
-              }
-            >
-              <FaPeopleGroup />
-              Trainers
-            </NavLink>
-          </li> */}
           {/* Slider */}
-          {/* <li>
+          <li>
             <NavLink
               to="/dashboard/slider"
               className={({ isActive }) =>
                 clsx(css.nav_item, isActive && css.active)
               }
             >
-              <FaPeopleGroup />
-              Slider
+              <span>
+                <FaImages />
+                <span
+                  style={{ display: isPinned && !isHover ? "none" : "block" }}
+                >
+                  Hero slider
+                </span>
+              </span>
             </NavLink>
-          </li> */}
-          {/* Product */}
-          {/* <li>
+          </li>
+          {/* Post */}
+          <li>
             <NavLink
-              to="/dashboard/products"
+              to="/dashboard/post"
               className={({ isActive }) =>
                 clsx(css.nav_item, isActive && css.active)
               }
             >
-              <FaPeopleGroup />
-              Products
+              <span>
+                <FaList />
+                <span
+                  style={{ display: isPinned && !isHover ? "none" : "block" }}
+                >
+                  Blog
+                </span>
+              </span>
             </NavLink>
-          </li> */}
-          {/* News */}
-          {/* <li>
-            <NavLink
-              to="/dashboard/news"
-              className={({ isActive }) =>
-                clsx(css.nav_item, isActive && css.active)
-              }
-            >
-              <FaPeopleGroup />
-              News
-            </NavLink>
-          </li> */}
-          {/* Reviews */}
-          {/* <li>
-            <NavLink
-              to="/dashboard/reviews"
-              className={({ isActive }) =>
-                clsx(css.nav_item, isActive && css.active)
-              }
-            >
-              <FaPeopleGroup />
-              Відгуки
-            </NavLink>
-          </li> */}
-          {/* New subscriber */}
-          {/* <li>
-            <NavLink
-              to="/dashboard/request"
-              className={({ isActive }) =>
-                clsx(css.nav_item, isActive && css.active)
-              }
-            >
-              <FaPeopleGroup />
-              New subscriber
-            </NavLink>
-          </li> */}
+          </li>
         </ul>
-        {/* LOGOUT */}
-        <div className={css.logout}>
-          <button onClick={logout} className={css.logout_btn}>
-            Log Out
-            <LuLogOut />
-          </button>
-        </div>
       </nav>
-    </div>
+    </header>
   );
 }

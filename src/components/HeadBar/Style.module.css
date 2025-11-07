@@ -1,0 +1,38 @@
+.wrapper {
+  min-height: 70px;
+
+  display: flex;
+  align-items: center;
+
+  padding-inline: 1.5rem;
+
+  margin: 0 0 0.5rem 0;
+
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+  background: #303641;
+}
+
+.burger_button {
+  cursor: pointer;
+
+  padding-inline: 0.6em;
+  padding-block: 0.4rem;
+
+  display: flex;
+  align-items: center;
+
+  border-radius: var(--bs-border-radius-sm);
+
+  background: transparent;
+
+  border: 1px solid #3eaad1;
+}
+
+.burger_button:hover {
+  background: #3eaad1;
+}
+
+.burger_button svg {
+  color: #fff;
+  font-size: 1.125rem !important;
+}

@@ -1,52 +1,107 @@
-import { createContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { createContext, useContext, useEffect, useState } from "react";
+import axios from "axios";
 import {
   checkSession,
-  loginRequest,
-  logoutRequest,
-} from "../services/authService";
+  getMe,
+  logout,
+  refreshSession,
+} from "../services/authService.js";
+
+import { login } from "../services/authService.js";
 
 const AuthContext = createContext();
 
+export const useAuth = () => useContext(AuthContext);
+
 export const AuthProvider = ({ children }) => {
-  const navigate = useNavigate();
-  const [hasAccess, setHasAccess] = useState(null);
   const [user, setUser] = useState(null);
+  const [authorized, setAuthorized] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  const getLogin = async (data) => {
+    const res = await login(data);
+    const user = res.data.user;
+    if (user) {
+      setUser(user);
+      setAuthorized(true);
+    }
+  };
+
+  const register = async (data) => {
+    const res = await axios.post("/auth/register", data, {
+      withCredentials: true,
+    });
+    setUser(res.data.user);
+  };
+
+  const getLogout = async () => {
+    await logout();
+    await fetchUser();
+    setUser(null);
+  };
+
+  const getRefreshSession = async () => {
+    await refreshSession();
+  };
+
+  const fetchUser = async () => {
+    try {
+      setLoading(true);
+      setAuthorized(false);
+
+      const isAuthenticated = await checkSession(); // GET /auth/session
+
+      if (isAuthenticated) {
+        const user = await getMe(); // GET /auth/me
+        if (user) {
+          setUser(user);
+          setAuthorized(true);
+        }
+        console.log("✅ Session valid");
+      } else {
+        console.log("⚠️ Session invalid, trying refresh...");
+        await getRefreshSession();
+
+        const isAuthenticatedAfterRefresh = await checkSession();
+        if (isAuthenticatedAfterRefresh) {
+          const user = await getMe();
+          if (user) {
+            setUser(user);
+            setAuthorized(true);
+          }
+
+          console.log("✅ Session refreshed");
+        } else {
+          console.log("❌ Refresh failed");
+        }
+      }
+    } catch (err) {
+      setLoading(false);
+      setAuthorized(false);
+      console.error("❌ Session check error:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const initSession = async () => {
-      try {
-        const data = await checkSession();
-        console.log(data);
-
-        setHasAccess(true);
-        setUser(data.user.name);
-      } catch {
-        setHasAccess(false);
-        setUser(null);
-      }
-    };
-    initSession();
+    fetchUser();
   }, []);
 
-  const login = async (email, password) => {
-    const result = await loginRequest(email, password);
-    setHasAccess(true);
-    setUser(result.data.userName);
-  };
-
-  const logout = async () => {
-    navigate("/");
-    setHasAccess(false);
-    setUser(null);
-    await logoutRequest();
-  };
-
   return (
-    <AuthContext.Provider value={{ logout, login, user, hasAccess }}>
-      {children}
+    <AuthContext.Provider
+      value={{
+        user,
+        authorized,
+        loading,
+        getLogin,
+        fetchUser,
+        register,
+        getLogout,
+        refreshSession,
+      }}
+    >
+      {loading ? <h1>Завантаження...</h1> : children}
     </AuthContext.Provider>
   );
 };
-
-export default AuthContext;

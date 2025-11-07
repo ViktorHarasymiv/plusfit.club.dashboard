@@ -1,28 +1,25 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import * as Yup from "yup";
-
-import { useAuth } from "../../hooks/useAuth";
 
 import "./login.css";
+import { useAuth } from "../../context/AuthContext";
 
 export default function Login() {
   const navigate = useNavigate();
-  const { login } = useAuth();
+  const { getLogin, fetchUser } = useAuth();
 
   const initialValues = {
     email: "",
     password: "",
   };
 
-  const handleSubmit = async (values, { resetForm }) => {
+  const handleSubmit = async (values) => {
     try {
-      await login(values.email, values.password);
+      await getLogin(values);
+      await fetchUser();
 
       navigate("/dashboard");
-      resetForm();
-      return;
     } catch (error) {
       return error;
     }

@@ -3,15 +3,15 @@ import { API_URL } from "../config/api";
 
 // GET
 
-export const GET_PORTFOLIO = async () => {
+export const GET_SLIDE = async () => {
   try {
-    const response = await axios.get(`${API_URL}/portfolio`);
+    const response = await axios.get(`${API_URL}/hero`);
 
-    console.log("✅ Портфоліо:", response.data.result.data);
+    console.log("✅ Слайдер:", response.data.result.data);
     return response.data;
   } catch (error) {
     const portfolio =
-      error.response?.data?.message || "Не вдалося отримати портфоліо";
+      error.response?.data?.message || "Не вдалося отримати слайдер";
     console.error("❌ Помилка:", portfolio);
     throw new Error(portfolio);
   }
@@ -19,11 +19,11 @@ export const GET_PORTFOLIO = async () => {
 
 // CREATE
 
-export const ADD_PHOTO = async (data) => {
+export const CREATE_SLIDE = async (data) => {
   try {
-    const response = await axios.post(`${API_URL}/portfolio`, data);
+    const response = await axios.post(`${API_URL}/hero`, data);
 
-    console.log("Успішно додано фото:", response.data);
+    console.log("Успішно додано слайд:", response.data);
     return response.data;
   } catch (error) {
     console.log(error);
@@ -34,10 +34,9 @@ export const ADD_PHOTO = async (data) => {
 
 // DELETE
 
-export const DELETE_PHOTO = async (photoId, filename) => {
+export const DELETE_SLIDE = async (slideId) => {
   try {
-    const response = await axios.delete(`${API_URL}/portfolio/${photoId}`, {
-      data: { filename },
+    const response = await axios.delete(`${API_URL}/hero/${slideId}`, {
       headers: {
         "Content-Type": "application/json",
       },

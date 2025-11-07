@@ -1,10 +1,8 @@
-import { Outlet } from "react-router-dom";
-import Home from "./pages/Home/Home";
+import Home from "../pages/Info/Info";
 
 export default function Dashboard() {
   return (
-    <section>
-      <h1>Інформаційна панель</h1>
+    <section className="section">
       <Home />
     </section>
   );
