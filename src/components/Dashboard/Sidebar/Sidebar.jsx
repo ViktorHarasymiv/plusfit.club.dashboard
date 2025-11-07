@@ -6,7 +6,7 @@ import clsx from "clsx";
 
 import css from "./Sidebar.module.css";
 
-import Logo from "/logo/logoLight.png";
+import Logo from "/logo/logoLight.PNG";
 
 import UserAvatar from "/img/user3.png";
 
