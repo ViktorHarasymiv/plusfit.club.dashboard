@@ -1,3 +1,13 @@
 {
-  "rewrites": [{ "source": "/(.*)", "destination": "/" }]
+  "rewrites": [
+    {
+      "source": "/dashboard/api/:path*",
+      "destination": "https://plusfit-club-backend.onrender.com/:path*"
+    },
+    {
+      "source": "/api/:path*",
+      "destination": "https://plusfit-club-backend.onrender.com/:path*"
+    },
+    { "source": "/(.*)", "destination": "/" }
+  ]
 }
