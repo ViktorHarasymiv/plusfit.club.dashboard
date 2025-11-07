@@ -24,7 +24,7 @@ import { RxHamburgerMenu } from "react-icons/rx";
 
 export default function Sidebar() {
   const width = useWindowWidth();
-  const { user, getLogout } = useAuth();
+  const { user } = useAuth();
 
   const isMobile = width < 767.98;
 

@@ -19,7 +19,7 @@ export default function Login() {
       await getLogin(values);
       await fetchUser();
 
-      navigate("/dashboard");
+      navigate("/dashboard/info");
     } catch (error) {
       return error;
     }

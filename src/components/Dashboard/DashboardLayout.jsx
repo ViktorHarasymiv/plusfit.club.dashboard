@@ -20,8 +20,10 @@ export default function DashboardLayout() {
   const isMobile = width < 767.98;
 
   useEffect(() => {
-    setPinned(false);
-    setIsHover(false);
+    if (isPinned || isHover) {
+      setPinned(false);
+      setIsHover(false);
+    } else return;
   }, [location]);
 
   return (

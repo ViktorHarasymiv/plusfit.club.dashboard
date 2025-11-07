@@ -2,25 +2,24 @@
   overflow: hidden;
 
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
 
   gap: 15px;
 }
 
 .tile {
-  width: 25%;
+  min-width: 200px;
+  max-width: 100%;
+
+  width: 100%;
 
   display: flex;
-  flex-direction: row;
-
   justify-content: space-between;
+
   background: #303641;
 
-  border-radius: 6px;
-
-  border-radius: 4px;
-
-  backdrop-filter: blur(12px);
+  border-radius: 0.5em;
 }
 
 .tile_wrapper {
@@ -34,6 +33,8 @@
   justify-content: space-between;
 
   align-items: end;
+
+  gap: 20px;
 
   border-radius: 0.5em;
 }
@@ -53,4 +54,20 @@
 .tile_wrapper span {
   font-weight: 500;
   font-size: 24px;
+  color: var(--bs-primary);
+}
+
+@media screen and (min-width: 767.98px) {
+  .tile {
+    max-width: calc(50% - 15px);
+  }
+}
+
+@media screen and (min-width: 1191.98px) {
+  .tile {
+    max-width: calc(25% - 15px);
+  }
+  .wrapper {
+    flex-wrap: nowrap;
+  }
 }
