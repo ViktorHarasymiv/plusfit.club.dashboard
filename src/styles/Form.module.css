@@ -1,0 +1,180 @@
+.input {
+  box-sizing: border-box;
+
+  max-width: 100%;
+  width: 100%;
+
+  padding: 0.375rem 0.75rem;
+
+  font-size: 0.9rem;
+
+  font-weight: 400;
+  line-height: 1.5;
+
+  color: var(--bs-body-color);
+
+  background-color: var(--bs-body-bg);
+
+  border: var(--bs-border-width) solid #50596a;
+
+  border-radius: var(--bs-border-radius);
+
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+
+  appearance: none;
+  -webkit-appearance: none; /* для Safari */
+  -moz-appearance: none;
+}
+
+.input:focus {
+  color: var(--bs-body-color);
+  background-color: var(--bs-body-bg);
+  border-color: #91c4d7;
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgba(35, 137, 174, 0.25);
+}
+
+.input::placeholder {
+  color: var(--bs-secondary-color);
+  opacity: 1;
+}
+
+.label {
+  display: inline-block;
+  margin-bottom: 0.3em;
+
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.label span {
+  color: var(--bs-danger);
+}
+
+.textarea {
+  resize: none;
+  height: 100px;
+}
+
+.input_wrapper {
+  position: relative;
+
+  display: flex;
+  gap: 30px;
+  flex-wrap: nowrap;
+}
+
+.button {
+  cursor: pointer;
+
+  padding-block: 10px;
+
+  width: 100%;
+
+  background: var(--bs-primary);
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+
+  font-size: 14px;
+  color: white;
+
+  border: none;
+  border-radius: var(--bs-border-radius);
+
+  transition: all 0.1s ease;
+}
+
+.button:hover {
+  background: #449bba;
+}
+
+.secondary {
+  background: transparent;
+
+  color: inherit;
+
+  border: 1px solid var(--bs-secondary) !important;
+}
+
+.secondary:hover {
+  background: #50596a;
+}
+
+.date_wrapper {
+  display: flex;
+  gap: 30px;
+}
+
+.id_wrapper {
+  position: relative;
+}
+
+.refresh_icon {
+  position: absolute;
+
+  top: 50%;
+  right: 15px;
+
+  transform: translateY(-50%);
+}
+
+.refresh_icon:active {
+  transform: translateY(-50%) scale(0.9);
+}
+
+.finally_block {
+  position: absolute;
+
+  bottom: 30px;
+
+  right: 30px;
+  padding-inline: 50px;
+  display: flex;
+  align-items: center;
+
+  justify-content: end;
+}
+
+.price_value {
+  display: flex;
+
+  gap: 5px;
+
+  font-weight: 600;
+}
+
+/* HELPER */
+
+.helper_text {
+  margin-top: 0.25rem;
+  font-size: 0.8em;
+}
+
+.helper_button {
+  margin-block: 15px;
+
+  width: 100%;
+
+  background: transparent;
+  border: none;
+
+  letter-spacing: 0.03em;
+  color: inherit;
+
+  text-decoration: underline;
+
+  text-align: right;
+}
+
+/* ERROR */
+
+.error {
+  position: absolute;
+
+  left: 10px;
+  bottom: -20px;
+
+  font-size: 10px;
+
+  color: white;
+}

@@ -1,5 +1,4 @@
 import { Routes, Route } from "react-router-dom";
-// import { useAuth } from "../../context/AuthContext";
 
 import Dashboard from "../components/Dashboard/Dashboard";
 
@@ -11,8 +10,6 @@ import Trainers from "../components/pages/Trainers/Trainers";
 import Message from "../components/pages/Message/Message";
 import Portfolio from "../components/pages/Portfolio/Portfolio";
 import SliderHero from "../components/pages/SliderHero/SliderHero";
-
-// import NotFound from "../NotFound/NotFound";
 
 function Router() {
   return (
@@ -34,7 +31,6 @@ function Router() {
         </Route>
 
         {/* Сторінка 404 */}
-        {/* <Route path="*" element={<NotFound />} /> */}
       </Routes>
     </>
   );

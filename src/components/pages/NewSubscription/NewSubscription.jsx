@@ -85,20 +85,6 @@ export default function NewSubscription() {
     );
   };
 
-  const FormikDatePickerEnd = () => {
-    const { setFieldValue } = useFormikContext();
-    return (
-      <DesktopDatePicker
-        label="Кінцева дата"
-        minDate={maxDateStart}
-        maxDate={minDateEnd}
-        onChange={(newValue) =>
-          setFieldValue("endDate", newValue.toISOString())
-        }
-      />
-    );
-  };
-
   // UTILS
 
   function generateCustomId() {
@@ -425,20 +411,6 @@ export default function NewSubscription() {
 
                 <ErrorMessage
                   name="startDate"
-                  component="div"
-                  className="error"
-                />
-              </div>
-
-              {/* Кінцева дата */}
-
-              <div className="input_wrapper">
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                  <FormikDatePickerEnd />
-                </LocalizationProvider>
-
-                <ErrorMessage
-                  name="endDate"
                   component="div"
                   className="error"
                 />

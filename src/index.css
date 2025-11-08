@@ -1,7 +1,7 @@
 @import url("./styles/root.css");
 @import url("./styles/button.css");
 @import url("./styles/tab.css");
-@import url("./styles/form.css");
+@import url("./styles//select.css");
 
 #root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -19,6 +19,7 @@
 }
 
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
@@ -46,6 +47,7 @@ body {
 }
 
 main {
+  width: 100%;
   height: 100vh;
 }
 
@@ -53,6 +55,7 @@ a {
   text-decoration: none;
   color: inherit;
 }
+
 img {
   max-width: 100%;
   max-height: 100%;
@@ -61,6 +64,8 @@ img {
 }
 
 input {
+  box-sizing: border-box;
+
   margin: 0;
   padding: 0;
 }
@@ -116,10 +121,12 @@ h5 {
   font-size: 13px !important;
   color: rgba(255, 255, 255, 0.8) !important;
 }
+
 .MuiPickersOutlinedInput-notchedOutline {
   border-width: 1px !important;
   border-color: rgba(255, 255, 255, 0.8) !important;
 }
+
 .MuiSvgIcon-root {
   width: 18px !important;
   color: white !important;
