@@ -50,7 +50,13 @@ export default function DashboardLayout() {
           <PageBar />
           <Outlet />
         </main>
-        <Footer />
+        <footer
+          style={{
+            marginLeft: (isHover || isPinned) && !isMobile ? "81.6px" : "0px",
+          }}
+        >
+          <Footer />
+        </footer>
       </div>
     </div>
   );
