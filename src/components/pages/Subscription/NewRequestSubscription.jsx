@@ -3,7 +3,7 @@ import ReactPaginate from "react-paginate";
 
 import Card from "../AllSubscription/Card";
 
-import css from "../AllSubscription/AllSubscription.module.css";
+import css from "../AllSubscription/Style.module.css";
 
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { FaArrowRightLong } from "react-icons/fa6";

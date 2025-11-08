@@ -17,7 +17,7 @@ export default function DashboardLayout() {
 
   const { isPinned, setPinned, isHover, setIsHover } = useMenuStore();
 
-  const isMobile = width < 767.98;
+  const isMobile = width < 991.98;
 
   useEffect(() => {
     if (isPinned || isHover) {
@@ -29,7 +29,17 @@ export default function DashboardLayout() {
   return (
     <div className="one_page_module">
       <Sidebar />
-      <div className="main-wrapper">
+      <div
+        className="main-wrapper"
+        style={{
+          maxWidth:
+            !isPinned && !isMobile && width > 1391.98
+              ? "85%"
+              : !isPinned && !isMobile
+              ? "77%"
+              : null,
+        }}
+      >
         <main
           className="main-content"
           style={{

@@ -1,7 +1,7 @@
 import React from "react";
 import ReactPaginate from "react-paginate";
 
-import css from "./AllSubscription.module.css";
+import css from "./Style.module.css";
 
 import Card from "./Card";
 
@@ -25,16 +25,37 @@ export default function AllSubscription({
 
   return (
     <>
-      <ul className={css.data_list}>
-        {items.map((item, i) => (
-          <Card
-            key={i}
-            user={item}
-            deleteFn={deleteFn}
-            updateMutation={updateMutation}
-          />
-        ))}
-      </ul>
+      <div className={css.wrapper}>
+        <div className={css.table_outer}>
+          <table className={css.table}>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Full Name</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Type</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Verify</th>
+                <th>Pay</th>
+                <th>Method</th>
+                <th>Last Change</th>
+              </tr>
+            </thead>
+            <tbody>
+              {items.map((item, i) => (
+                <Card
+                  key={i}
+                  user={item}
+                  deleteFn={deleteFn}
+                  updateMutation={updateMutation}
+                />
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
       {pageCount > 0 && (
         <ReactPaginate
           className={css.pagination}

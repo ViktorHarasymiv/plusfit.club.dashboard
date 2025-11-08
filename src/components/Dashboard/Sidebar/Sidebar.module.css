@@ -134,13 +134,12 @@
   font-size: 1.125rem !important;
 }
 
-@media screen and (max-width: 767.98px) {
+@media screen and (max-width: 991.98px) {
   .sidebar {
     z-index: 9999 !important;
 
     position: absolute !important;
     min-width: 0px !important;
-    width: 70vh;
   }
 
   .app_brand {

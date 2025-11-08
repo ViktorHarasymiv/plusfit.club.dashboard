@@ -188,7 +188,7 @@ export default function SignUp() {
             {/* SUBMIT */}
             <div className={css.action_wrapper}>
               <button type="submit" className={style.button}>
-                Login
+                Signup
               </button>
               <button
                 onClick={changeSign}

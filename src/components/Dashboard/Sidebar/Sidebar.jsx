@@ -26,7 +26,7 @@ export default function Sidebar() {
   const width = useWindowWidth();
   const { user } = useAuth();
 
-  const isMobile = width < 767.98;
+  const isMobile = width < 991.98;
 
   const { isPinned, isHover, setIsHover, togglePinned } = useMenuStore();
 
@@ -50,8 +50,13 @@ export default function Sidebar() {
       style={{
         zIndex: isPinned || isHover ? "9999" : "1",
         position: isPinned || isHover || isMobile ? "fixed" : "static",
-        minWidth: isPinned ? "80px" : "230px",
-        width: !isPinned && isMobile ? "70vw" : "0px",
+        minWidth:
+          !isPinned && !isMobile && width > 1391.98
+            ? "15%"
+            : !isPinned && !isMobile
+            ? "23%"
+            : "80px",
+        width: !isPinned && isMobile ? "300px" : "0px  ",
       }}
     >
       <div className={css.app_brand}>

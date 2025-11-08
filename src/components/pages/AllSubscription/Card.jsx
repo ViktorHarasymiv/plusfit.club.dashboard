@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import css from "./AllSubscription.module.css";
+import css from "./Style.module.css";
 import Modal from "../../Modal/Modal";
 
 import { FaCopy } from "react-icons/fa";
@@ -13,8 +13,12 @@ export default function Card({ user, deleteFn, updateMutation }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const formatted = (data) => {
-    const options = { day: "numeric", month: "numeric", year: "numeric" };
-    return new Date(data).toLocaleDateString("uk-UA", options);
+    const options = {
+      day: "2-digit",
+      month: "2-digit",
+      year: "2-digit",
+    };
+    return new Date(data).toLocaleDateString("en-US", options);
   };
 
   const handleCopy = async (value) => {
@@ -28,10 +32,6 @@ export default function Card({ user, deleteFn, updateMutation }) {
 
   const [editedValue, setEditedValue] = useState("");
 
-  const toTopStyle = {
-    top: "-30px",
-  };
-
   const cleanField = () => {
     if (editedValue == "") return;
     else if (moduleId || moduleName || modulePhone == true) {
@@ -42,38 +42,31 @@ export default function Card({ user, deleteFn, updateMutation }) {
     }
   };
 
+  console.log(user);
+
   return (
     <>
-      <li
-        onClick={() => setIsOpen((prev) => !prev)}
-        className={css.item}
-        style={{ background: "url('/img/Lines.svg')" }}
-      >
-        <div className={css.c1}>
-          <span>{user.clientId}</span>
-          <div className={css.c1_c1}>
-            <span>
-              {user.isVerify == false ? (
-                <span style={{ color: "red" }}>Не верифікований</span>
-              ) : (
-                <span style={{ color: "green" }}>Верифікований</span>
-              )}
-            </span>
-          </div>
-        </div>
-        <div className={css.c2}>
-          <div className={css.c2_c1}>
-            <span>{user.fullName}</span>
-            <span>{user.phone}</span>
-          </div>
-          <div className={css.c2_c1}>
-            <span>
-              {formatted(user.startDate)} - {formatted(user.endDate)}
-            </span>
-            <span>{user.type}</span>
-          </div>
-        </div>
-      </li>
+      <tr onClick={() => setIsOpen((prev) => !prev)}>
+        <td>{user.clientId}</td>
+        <td>{user.name}</td>
+        <td>{user.phone}</td>
+        <td>{user.email}</td>
+        <td>{user.type}</td>
+        <td>
+          {formatted(user.startDate)} - {formatted(user.endDate)}
+        </td>
+        <td>{user.status}</td>
+        <td>
+          {user.isVerify === true ? (
+            <span style={{ color: "var(--bs-green)" }}>Yes</span>
+          ) : (
+            <span style={{ color: "var(--bs-danger)" }}>No</span>
+          )}
+        </td>
+        <td>{user.price}</td>
+        <td>{user.method}</td>
+        <td>{formatted(user.updatedAt)}</td>
+      </tr>
 
       {/* Modal */}
       <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
