@@ -42,8 +42,6 @@ export default function Card({ user, deleteFn, updateMutation }) {
     }
   };
 
-  console.log(user);
-
   return (
     <>
       <tr onClick={() => setIsOpen((prev) => !prev)}>

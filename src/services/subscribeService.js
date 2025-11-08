@@ -8,7 +8,23 @@ export const GET_SUBSCRIPTIONS = async (page, perPage) => {
       params: { page, perPage },
     });
 
-    console.log("✅ Абонементи:", response.data.result.data);
+    console.log("✅ Абонементи:", response.data.result);
+    return response.data;
+  } catch (error) {
+    const message =
+      error.response?.data?.message || "Не вдалося отримати абонементи";
+    console.error("❌ Помилка:", message);
+    throw new Error(message);
+  }
+};
+
+export const GET_SUBSCRIPTIONS_PARAMS = async (filter, page, perPage) => {
+  try {
+    const response = await axios.get(`${API_URL}/subscriptions`, {
+      params: { ...filter, page, perPage },
+    });
+
+    console.log("✅ Абонементи:", response.data);
     return response.data;
   } catch (error) {
     const message =
