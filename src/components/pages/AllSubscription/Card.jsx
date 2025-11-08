@@ -63,7 +63,7 @@ export default function Card({ user, deleteFn, updateMutation }) {
         </td>
         <td>{user.price}</td>
         <td>{user.method}</td>
-        <td>{formatted(user.updatedAt)}</td>
+        <td>{formatted(user.createdAt)}</td>
       </tr>
 
       {/* Modal */}
@@ -195,7 +195,6 @@ export default function Card({ user, deleteFn, updateMutation }) {
                       cleanField();
                     }}
                     placeholder="Введіть значення"
-                    style={toTopStyle}
                   />
                 )}
                 {user.isVerify == false ? (

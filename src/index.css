@@ -46,10 +46,6 @@ body {
   color: var(--bs-body-color);
 }
 
-main {
-  height: 100%;
-}
-
 thead,
 tbody,
 tfoot,

@@ -10,7 +10,7 @@ import { useAuthModalStore } from "../../store/useAuthModalStore";
 function Auth() {
   const { isSignInOpen, isSignUpOpen } = useAuthModalStore();
   return (
-    <main>
+    <main className="main-wrapper">
       <section className="section">
         <div className={css.wrapper}>
           {/* FORM */}

@@ -11,12 +11,6 @@ import { FaArrowRightLong } from "react-icons/fa6";
 
 import { ClipLoader } from "react-spinners";
 
-/* MUI SELECT */
-
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
-
 import {
   DELETE_SUBSCRIPTIONS,
   EDIT_SUBSCRIPTIONS,
@@ -25,13 +19,15 @@ import {
 
 import NewSubscription from "../NewSubscription/NewSubscription";
 import AllSubscription from "../AllSubscription/AllSubscription";
+import FilterForm from "../../FilterForm/FilterForm";
 
 export default function Subscription() {
   const [page, setPage] = useState(1);
   const [tab, setTab] = useState(0);
+
   const [filter, setFilter] = useState({});
 
-  const perPage = 9;
+  const perPage = 20;
 
   const queryClient = useQueryClient();
 
@@ -118,20 +114,7 @@ export default function Subscription() {
         <div className={css.secoundary_wrapper}>
           {/* Search */}
 
-          <FormControl>
-            <Select
-              onChange={(e) => setFilter({ isVerify: e.target.value })}
-              displayEmpty
-              inputProps={{ "aria-label": "Without label" }}
-              MenuProps={{
-                disableScrollLock: true,
-              }}
-            >
-              <MenuItem value="">Пошук</MenuItem>
-              <MenuItem value={true}>Верифікований</MenuItem>
-              <MenuItem value={false}>Неверифікований</MenuItem>
-            </Select>
-          </FormControl>
+          <FilterForm onSubmit={(filter) => setFilter(filter)} />
 
           {pageCount > 0 && (
             <ReactPaginate

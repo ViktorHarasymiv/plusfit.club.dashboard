@@ -8,7 +8,6 @@
 
 .main-wrapper {
   width: 100%;
-  height: 100%;
 
   display: flex;
   flex-direction: column;
@@ -17,6 +16,7 @@
 .main-content {
   display: flex;
   flex-direction: column;
+  flex: 1 1 100%;
 
   -webkit-transition: padding-left 0.1s ease;
   transition: padding-left 0.1s ease;
@@ -28,6 +28,7 @@
   display: flex;
   flex-direction: column;
 
+  width: 100%;
   height: 100%;
 }
 

@@ -7,11 +7,7 @@ export default function Modal({ isOpen, onClose, children }) {
 
   return createPortal(
     <div className="overlay" onClick={onClose}>
-      <div
-        className="content"
-        onClick={(e) => e.stopPropagation()}
-        style={{ background: "url('/img/Lines.svg')" }}
-      >
+      <div className="content" onClick={(e) => e.stopPropagation()}>
         {children}
       </div>
     </div>,
