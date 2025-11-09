@@ -1,18 +1,28 @@
 .put_module {
   position: absolute;
 
+  top: 30px;
+  left: 30px;
+
   display: flex;
 
   gap: 20px;
 }
 
+.module_bottom {
+  left: -160px;
+  bottom: -12px;
+}
+
 .module_input {
   background: rgba(255, 255, 255, 0.2);
 
+  max-width: 250px;
+
+  padding: 8px 40px 8px 18px;
+
   border: 1px solid white;
   border-radius: 6px;
-
-  padding: 5px 8px;
 
   color: inherit;
 }
@@ -30,23 +40,39 @@
   color: white;
 }
 
-.module_button {
-  cursor: pointer;
+.action_wrapper {
   position: absolute;
 
   top: 50%;
   right: 10px;
 
   transform: translateY(-43%);
+
+  display: flex;
+
+  align-items: center;
+}
+
+.module_button {
+  cursor: pointer;
   background: transparent;
 
   border: none;
-
   font-size: 18px;
-
-  color: white;
+  color: var(--bs-warning);
 }
 
-.module_button:hover {
-  transform: translateY(-43%) scale(1.08);
+.close_button {
+  cursor: pointer;
+
+  background: transparent;
+  border: none;
+
+  font-size: 28px;
+  color: var(--bs-danger);
+}
+
+.module_button:hover,
+.close_button:hover {
+  transform: scale(1.1);
 }

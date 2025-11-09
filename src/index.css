@@ -30,7 +30,7 @@ li {
 }
 
 body {
-  overflow-x: hidden;
+  overflow: hidden;
 
   padding: 0;
   margin: 0;

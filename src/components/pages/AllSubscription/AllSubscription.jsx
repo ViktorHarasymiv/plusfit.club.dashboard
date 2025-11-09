@@ -28,14 +28,18 @@ export default function AllSubscription({ data, deleteFn, updateMutation }) {
               </tr>
             </thead>
             <tbody>
-              {items.map((item, i) => (
-                <Card
-                  key={i}
-                  user={item}
-                  deleteFn={deleteFn}
-                  updateMutation={updateMutation}
-                />
-              ))}
+              {items.length == 0 ? (
+                <h3 className={css.error_text}>Not found</h3>
+              ) : (
+                items.map((item, i) => (
+                  <Card
+                    key={i}
+                    user={item}
+                    deleteFn={deleteFn}
+                    updateMutation={updateMutation}
+                  />
+                ))
+              )}
             </tbody>
           </table>
         </div>

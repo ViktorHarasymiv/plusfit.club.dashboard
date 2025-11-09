@@ -1,6 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
 
-import { useWindowWidth } from "../../../hooks/useWindowWidth";
+import { useWindowWidth } from "../../hooks/useWindowWidth";
 
 import clsx from "clsx";
 
@@ -17,8 +17,8 @@ import { AiFillMessage } from "react-icons/ai";
 import { RiGalleryFill } from "react-icons/ri";
 import { FaList } from "react-icons/fa";
 
-import { useAuth } from "../../../context/AuthContext";
-import { useMenuStore } from "../../../store/useMenuStore";
+import { useAuth } from "../../context/AuthContext";
+import { useMenuStore } from "../../store/useMenuStore";
 
 import { RxHamburgerMenu } from "react-icons/rx";
 
@@ -48,7 +48,7 @@ export default function Sidebar() {
       onMouseLeave={handleMouseToggleLeave}
       className={`${css.sidebar} ${isHover ? css.sidebarHover : ""}`}
       style={{
-        zIndex: isPinned || isHover ? "9999" : "1",
+        zIndex: isPinned || isHover ? "2" : "1",
         position: isPinned || isHover || isMobile ? "fixed" : "static",
         minWidth:
           !isPinned && !isMobile && width > 1391.98

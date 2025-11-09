@@ -1,6 +1,6 @@
 // DashboardLayout.jsx
 import { Outlet, useLocation } from "react-router-dom";
-import Sidebar from "./Sidebar/Sidebar";
+import Sidebar from "../Sidebar/Sidebar";
 
 import "./style.css";
 import HeadBar from "../HeadBar/HeadBar";
@@ -15,16 +15,22 @@ export default function DashboardLayout() {
   const location = useLocation();
   const width = useWindowWidth();
 
-  const { isPinned, setPinned, isHover, setIsHover } = useMenuStore();
+  const { isPinned, togglePinned, isHover, setIsHover } = useMenuStore();
 
   const isMobile = width < 991.98;
 
-  useEffect(() => {
-    if (isPinned || isHover) {
-      setPinned(false);
-      setIsHover(false);
-    } else return;
-  }, [location]);
+  {
+    isMobile
+      ? useEffect(() => {
+          togglePinned();
+        }, [location])
+      : useEffect(() => {
+          if (isPinned || isHover) {
+            togglePinned();
+            setIsHover(false);
+          } else return;
+        }, [location]);
+  }
 
   return (
     <div className="one_page_module">

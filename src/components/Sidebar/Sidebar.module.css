@@ -15,7 +15,7 @@
 }
 
 .sidebarHover {
-  width: 230px !important;
+  width: 85% !important;
 }
 
 .app_brand {
@@ -63,7 +63,6 @@
 
 .sidebar_nav ul {
   display: flex;
-
   flex-direction: column;
 }
 
@@ -139,6 +138,9 @@
     z-index: 9999 !important;
 
     position: absolute !important;
+    top: 0;
+    bottom: 0;
+
     min-width: 0px !important;
   }
 

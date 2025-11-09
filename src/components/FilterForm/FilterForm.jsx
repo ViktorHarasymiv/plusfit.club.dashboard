@@ -58,9 +58,9 @@ const FilterForm = ({ onSubmit }) => {
     >
       {({ values, handleChange }) => (
         <Form>
-          <Box display="flex" gap={2} flexWrap="nowrap">
+          <Box display="flex" gap={2} flexWrap="wrap" justifyContent="end">
             {filterFields.map((field) => (
-              <FormControl key={field.name} sx={{ minWidth: 200 }}>
+              <FormControl key={field.name} sx={{ minWidth: 160 }}>
                 <InputLabel>{field.label}</InputLabel>
                 {field.type === "select" ? (
                   <Select
@@ -87,7 +87,11 @@ const FilterForm = ({ onSubmit }) => {
                 )}
               </FormControl>
             ))}
-            <button type="submit" className={style.button}>
+            <button
+              type="submit"
+              className={style.button}
+              style={{ width: "auto" }}
+            >
               Search
             </button>
           </Box>

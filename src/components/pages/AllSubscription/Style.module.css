@@ -65,26 +65,111 @@
 
 /* MODAL */
 
+.modal_item {
+  position: relative;
+
+  z-index: 9999;
+
+  display: flex;
+  justify-content: space-between;
+
+  flex: 1;
+}
+
 .values_wrapper {
   position: relative;
 }
 
-.modal_item {
-  padding: 12px 14px;
+.c1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.c1_c1 {
+  display: flex;
+  justify-content: end;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.c1_c2 {
+  display: flex;
+  align-items: end;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.value_tile {
+  max-width: 140px;
+  position: relative;
 
   display: flex;
-  justify-content: space-between;
   flex-direction: column;
+  align-items: end;
 
-  flex: 1;
+  gap: 20px;
+}
 
-  font-size: 18px;
+@media screen and (min-width: 1191.98px) {
+  .value_tile {
+    max-width: 100%;
+  }
+}
 
-  font-weight: 600;
+.reverse {
+  align-items: start;
+}
 
-  z-index: 1;
+.tile_wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
 
-  position: relative;
+.copy_title {
+  cursor: copy;
+
+  width: 100%;
+
+  overflow-wrap: break-word;
+}
+
+.copy_title:hover {
+  color: var(--bs-primary);
+}
+
+.button {
+  cursor: pointer;
+
+  width: 20px;
+  height: 20px;
+
+  background: transparent;
+  border: none;
+}
+
+.delete_button {
+  cursor: pointer;
+
+  width: 28px;
+  height: 28px;
+
+  background: transparent;
+  border: none;
+}
+
+.button svg,
+.delete_button svg {
+  width: 100%;
+  height: 100%;
+
+  fill: var(--bs-danger);
+}
+
+.button:hover svg,
+.delete_button:hover svg {
+  transform: scale(1.1);
 }
 
 .edit_button {
@@ -95,13 +180,14 @@
   cursor: pointer;
 }
 
-.price_wrapper,
-.date_wrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
 .ident_wrapper {
   position: relative;
+}
+
+.error_text {
+  width: 100%;
+
+  margin: 50px 0px 0px 20px;
+  text-align: center;
+  color: var(--bs-danger);
 }
