@@ -56,7 +56,7 @@ export default function Sidebar() {
             : !isPinned && !isMobile
             ? "23%"
             : "80px",
-        width: !isPinned && isMobile ? "300px" : "0px  ",
+        width: !isPinned && isMobile ? "300px" : "0px",
       }}
     >
       <div className={css.app_brand}>
