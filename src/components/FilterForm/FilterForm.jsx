@@ -8,6 +8,7 @@ import {
   Box,
 } from "@mui/material";
 
+import css from "./Style.module.css";
 import style from "../../styles/Form.module.css";
 
 // Конфігурація фільтрів
@@ -57,10 +58,10 @@ const FilterForm = ({ onSubmit }) => {
       }}
     >
       {({ values, handleChange }) => (
-        <Form>
+        <Form className={css.form}>
           <Box display="flex" gap={2} flexWrap="wrap" justifyContent="end">
             {filterFields.map((field) => (
-              <FormControl key={field.name} sx={{ minWidth: 160 }}>
+              <FormControl key={field.name} sx={{ minWidth: 122 }}>
                 <InputLabel>{field.label}</InputLabel>
                 {field.type === "select" ? (
                   <Select
