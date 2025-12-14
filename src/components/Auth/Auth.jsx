@@ -11,12 +11,10 @@ function Auth() {
   const { isSignInOpen, isSignUpOpen } = useAuthModalStore();
   return (
     <main className="main-wrapper">
-      <section className="section">
-        <div className={css.wrapper}>
-          {/* FORM */}
-          {isSignInOpen ? <Login /> : isSignUpOpen ? <SignUp /> : null}
-        </div>
-      </section>
+      <div className={css.wrapper}>
+        {/* FORM */}
+        {isSignInOpen ? <Login /> : isSignUpOpen ? <SignUp /> : null}
+      </div>
     </main>
   );
 }

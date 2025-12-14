@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 import css from "./Style.module.css";
 import Modal from "../../Modal/Modal";
 
-import { FaCopy } from "react-icons/fa";
 import { FaEdit } from "react-icons/fa";
 
 import { MdDeleteOutline } from "react-icons/md";

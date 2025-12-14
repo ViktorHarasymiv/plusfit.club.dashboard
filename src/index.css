@@ -120,7 +120,7 @@ h5 {
 
 /* MUI DATE */
 
-.MuiFormLabel-root,
+/* .MuiFormLabel-root,
 .MuiPickersInputBase-root {
   max-height: 49.5px;
 
@@ -140,7 +140,7 @@ h5 {
 
 .css-1ckov0h-MuiSvgIcon-root {
   color: black !important;
-}
+} */
 
 /* Ширина скролу */
 ::-webkit-scrollbar {

@@ -2,6 +2,7 @@ import css from "./EditModule.module.css";
 
 import { HiOutlineSaveAs } from "react-icons/hi";
 import { IoIosClose } from "react-icons/io";
+import { useToastStore } from "../../store/toastStore";
 
 export const EditModule = ({
   value,
@@ -11,6 +12,14 @@ export const EditModule = ({
   close,
   bottom,
 }) => {
+  const { showToast } = useToastStore();
+  const submitPutChange = () => {
+    const res = onSave();
+
+    console.log(res);
+
+    showToast("Зміни збережено");
+  };
   return (
     <div className={`${css.put_module}  ${bottom ? css.module_bottom : null}`}>
       <input
@@ -28,7 +37,11 @@ export const EditModule = ({
         >
           <IoIosClose />
         </button>
-        <button type="submit" className={css.module_button} onClick={onSave}>
+        <button
+          type="submit"
+          className={css.module_button}
+          onClick={submitPutChange}
+        >
           <HiOutlineSaveAs />
         </button>
       </div>

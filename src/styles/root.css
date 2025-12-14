@@ -27,7 +27,7 @@
   --bs-gray-900: #edf0f5;
   --bs-primary: #2389ae;
   --bs-secondary: #50596a;
-  --bs-danger: #da6044;
+  --bs-danger: rgb(218, 96, 68);
   --bs-success: #52bd48;
   --bs-info: #3eaad1;
   --bs-warning: #d79a38;
@@ -126,4 +126,6 @@
   --bs-form-valid-border-color: #52bd48;
   --bs-form-invalid-color: #da6044;
   --bs-form-invalid-border-color: #da6044;
+
+  --pastel-red: #fd3c3d;
 }

@@ -6,9 +6,9 @@ import clsx from "clsx";
 
 import css from "./Sidebar.module.css";
 
-import Logo from "/logo/logoLight.PNG";
-
 import UserAvatar from "/img/user3.png";
+
+import LogoComponent from "../Logo/Logo";
 
 import { MdHome } from "react-icons/md";
 import { FaUsers } from "react-icons/fa";
@@ -61,7 +61,7 @@ export default function Sidebar() {
     >
       <div className={css.app_brand}>
         <Link to="/dashboard/info">
-          <img src={Logo} alt="Company logo" width={100} />
+          <LogoComponent />
         </Link>
         <button
           onClick={() => togglePinned()}

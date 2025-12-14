@@ -116,14 +116,11 @@ function NewPhoto() {
                     <MenuItem value="">
                       <em>Обери секцію</em>
                     </MenuItem>
-                    <MenuItem value={"Тренажерний зал"}>
-                      Тренажерний зал
-                    </MenuItem>
-                    <MenuItem value={"Масаж"}>Масаж</MenuItem>
-                    <MenuItem value={"Реабілітація"}>Реабілітація</MenuItem>
-                    <MenuItem value={"Йога"}>Йога</MenuItem>
-                    <MenuItem value={"Дитячі танці"}>Дитячі танці</MenuItem>
-                    <MenuItem value={"Ендосфера"}>Ендосфера</MenuItem>
+                    <MenuItem value={"Gym"}>Gym</MenuItem>
+                    <MenuItem value={"Fitness"}>Fitness</MenuItem>
+                    <MenuItem value={"Massage"}>Massage</MenuItem>
+                    <MenuItem value={"Rehabilitation"}>Rehabilitation</MenuItem>
+                    <MenuItem value={"Yoga"}>Yoga</MenuItem>
                   </Select>
                 </FormControl>
                 <ErrorMessage

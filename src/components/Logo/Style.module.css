@@ -1,0 +1,11 @@
+.logo {
+  font-size: 22px !important;
+
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--white);
+}
+
+.logo span {
+  color: var(--bs-primary);
+}

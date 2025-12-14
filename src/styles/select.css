@@ -3,13 +3,11 @@
 
   background-color: transparent;
   color: inherit !important;
-
   font-size: 14.5px !important;
 }
 
 .MuiOutlinedInput-input {
   padding: 0.5rem 2.25rem 0.5rem 0.75rem !important;
-
   background-color: #353c48 !important;
 }
 
@@ -35,4 +33,8 @@
 
 .MuiInputLabel-root {
   top: -6px !important;
+
+  color: inherit !important;
+  font-size: 12px !important;
+  font-weight: 400;
 }

@@ -50,8 +50,6 @@ function NewRequestSubscription({
     fetchSubscriptions();
   }, []);
 
-  console.log(subscriptions);
-
   return (
     <>
       <ul className={css.data_list}>
