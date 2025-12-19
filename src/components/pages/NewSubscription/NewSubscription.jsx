@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 
 // MEDIA
 
@@ -7,7 +7,7 @@ import { IoMdRefresh } from "react-icons/io";
 
 /* FORMIK */
 
-import { Formik, Form, Field, ErrorMessage, useFormikContext } from "formik";
+import { Formik, Form, Field, useFormikContext } from "formik";
 import * as Yup from "yup";
 
 /* MUI SELECT */
@@ -31,6 +31,8 @@ import { calculateAge } from "../../../utils/calculateAge";
 
 export default function NewSubscription() {
   // STATE
+
+  const [price, setPrice] = useState(0);
 
   // CONSTANT
 
@@ -63,10 +65,40 @@ export default function NewSubscription() {
 
     return (
       <DesktopDatePicker
-        label="Дата народження"
+        label="Enter value"
         minDate={minDate}
         maxDate={maxDate}
         onChange={handleChange}
+        slotProps={{
+          textField: {
+            sx: {
+              ".MuiPickersSectionList-root": {
+                padding: "8px 10px",
+              },
+
+              ".MuiPickersOutlinedInput-root": {
+                color: "#6c757d",
+              },
+
+              ".MuiPickersOutlinedInput-notchedOutline": {
+                borderRadius: "var(--bs-border-radius)",
+                borderColor: "#50596a",
+              },
+
+              "&.Mui-focused .MuiPickersOutlinedInput-notchedOutline": {
+                borderWidth: "1px",
+                borderColor: "#91c4d7 !important",
+                boxShadow: "0 0 0 0.25rem rgba(35, 137, 174, 0.25)",
+                outline: "0",
+              },
+
+              "&:hover .MuiPickersOutlinedInput-notchedOutline": {
+                borderWidth: "1px",
+                borderColor: "#6c757d !important",
+              },
+            },
+          },
+        }}
       />
     );
   };
@@ -76,12 +108,42 @@ export default function NewSubscription() {
 
     return (
       <DesktopDatePicker
-        label="Дата початку"
+        label="Enter value"
         minDate={maxDateStart}
         maxDate={minDateEnd}
         onChange={(newValue) =>
           setFieldValue("startDate", newValue.toISOString())
         }
+        slotProps={{
+          textField: {
+            sx: {
+              ".MuiPickersSectionList-root": {
+                padding: "8px 10px",
+              },
+
+              ".MuiPickersOutlinedInput-root": {
+                color: "#6c757d",
+              },
+
+              ".MuiPickersOutlinedInput-notchedOutline": {
+                borderRadius: "var(--bs-border-radius)",
+                borderColor: "#50596a",
+              },
+
+              "&.Mui-focused .MuiPickersOutlinedInput-notchedOutline": {
+                borderWidth: "1px",
+                borderColor: "#91c4d7 !important",
+                boxShadow: "0 0 0 0.25rem rgba(35, 137, 174, 0.25)",
+                outline: "0",
+              },
+
+              "&:hover .MuiPickersOutlinedInput-notchedOutline": {
+                borderWidth: "1px",
+                borderColor: "#6c757d !important",
+              },
+            },
+          },
+        }}
       />
     );
   };
@@ -103,29 +165,16 @@ export default function NewSubscription() {
 
   function getSubscriptionDetails(type) {
     switch (type) {
-      case "1 тренування":
-        return "200";
-
-      case "10 тренувань":
-        return "1800";
-
-      case "Місяць безліміт":
-        return "1200";
-
-      case "Три місяці безліміт":
-        return "3200";
-
-      case "Тариф сімейний 1 + 1":
-        return "2000";
-
-      case "Підлітковий 13–17 р.":
-        return "900";
-
-      case "Респект +55 р.":
-        return "800";
-
+      case "Basic":
+        return 59;
+      case "Standart":
+        return 99;
+      case "Premium":
+        return 156;
+      case "Vip":
+        return 399;
       default:
-        return "0";
+        return 59;
     }
   }
 
@@ -141,8 +190,8 @@ export default function NewSubscription() {
     status: "",
     startDate: "",
     endDate: "",
-    price: "",
-    currency: "UAH",
+    price: 0,
+    currency: "$",
     method: "",
   };
 
@@ -208,11 +257,12 @@ export default function NewSubscription() {
         <Form>
           <div className={style.form_block}>
             {/* Дані клієнта */}
+
             <section className={style.form_section}>
               <div className={style.input_tile}>
                 <div className={style.input_wrapper}>
                   <label htmlFor="name" className={style.label}>
-                    <h4>Прізвище Ім'я</h4>
+                    <h4>Full name</h4>
                   </label>
                   <Field
                     name="name"
@@ -226,7 +276,7 @@ export default function NewSubscription() {
               <div className={style.input_tile}>
                 <div className={style.input_wrapper}>
                   <label htmlFor="phone" className={style.label}>
-                    <h4>Номер телефону</h4>
+                    <h4>Phone number</h4>
                   </label>
                   <Field
                     name="phone"
@@ -240,7 +290,7 @@ export default function NewSubscription() {
               <div className={style.input_tile}>
                 <div className={style.input_wrapper}>
                   <label htmlFor="email" className={style.label}>
-                    <h4>Пошта</h4>
+                    <h4>Email</h4>
                   </label>
                   <Field
                     name="email"
@@ -252,25 +302,24 @@ export default function NewSubscription() {
                 </div>
               </div>
               <div className={style.input_tile}>
+                <label htmlFor="birthday" className={style.label}>
+                  <h4>Birthday date</h4>
+                </label>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <FormikDatePickerBirthday />
                 </LocalizationProvider>
-
-                <ErrorMessage
-                  name="birthday"
-                  component="div"
-                  className="error"
-                />
               </div>
             </section>
 
             {/* Тип підписки */}
+
             <section className={style.form_section}>
               {/* Айді */}
+
               <div className={style.input_tile}>
                 <div className={style.input_wrapper}>
                   <label htmlFor="clientId" className={style.label}>
-                    <h4>ID підписки</h4>
+                    <h4>Subscriber ID</h4>
                   </label>
                   <div className={style.relative_box}>
                     <Field
@@ -291,11 +340,12 @@ export default function NewSubscription() {
               </div>
 
               {/* Тип */}
+
               <div className={style.input_tile}>
                 <div className={style.input_wrapper}>
                   <div className={style.input_wrapper}>
                     <label htmlFor="type" className={style.label}>
-                      <h4>Тип підписки</h4>
+                      <h4>Subscriber type</h4>
                     </label>
                     <FormControl sx={{ width: "100%", margin: "0px" }}>
                       <Select
@@ -305,6 +355,7 @@ export default function NewSubscription() {
                           handleChange(e);
                           setFieldValue(
                             "price",
+                            setPrice(getSubscriptionDetails(e.target.value)),
                             getSubscriptionDetails(e.target.value)
                           );
                         }}
@@ -315,29 +366,12 @@ export default function NewSubscription() {
                         }}
                       >
                         <MenuItem value="">
-                          <em>Check type</em>
+                          <em>Type</em>
                         </MenuItem>
-                        <MenuItem value={"1 тренування"}>1 тренування</MenuItem>
-                        <MenuItem value={"10 тренувань"}>10 тренувань</MenuItem>
-                        <MenuItem value={"Місяць безліміт"}>
-                          Місяць безліміт
-                        </MenuItem>
-                        <MenuItem value={"Три місяці безліміт"}>
-                          Три місяці безліміт
-                        </MenuItem>
-                        <MenuItem value={"Тариф сімейний 1 + 1"}>
-                          Тариф сімейний 1 + 1
-                        </MenuItem>
-
-                        <MenuItem
-                          value={"Підлітковий 13–17 р."}
-                          disabled={age > 17 || 13 > age}
-                        >
-                          Підлітковий 13-17 р.
-                        </MenuItem>
-                        <MenuItem value={"Респект +55 р."} disabled={age < 55}>
-                          "Респект" +55 р.
-                        </MenuItem>
+                        <MenuItem value={"Basic"}>Basic</MenuItem>
+                        <MenuItem value={"Standart"}>Standart</MenuItem>
+                        <MenuItem value={"Premium"}>Premium</MenuItem>
+                        <MenuItem value={"Vip"}>Vip</MenuItem>
                       </Select>
                     </FormControl>
                   </div>
@@ -350,7 +384,7 @@ export default function NewSubscription() {
                 <div className={style.input_wrapper}>
                   <div className={style.input_wrapper}>
                     <label htmlFor="status" className={style.label}>
-                      <h4>Статус підписки</h4>
+                      <h4>Subscriber Status</h4>
                     </label>
                     <FormControl sx={{ width: "100%", margin: "0px" }}>
                       <Select
@@ -364,21 +398,16 @@ export default function NewSubscription() {
                         }}
                       >
                         <MenuItem value="">
-                          <em>Статус</em>
+                          <em>Status</em>
                         </MenuItem>
-                        <MenuItem value={"Активний"}>Активний</MenuItem>
-                        <MenuItem value={"Завершений"}>Завершений</MenuItem>
-                        <MenuItem value={"Заморожений"}>Заморожений</MenuItem>
-                        <MenuItem value={"Очікує оплати"}>
-                          Очікує оплати
+                        <MenuItem value={"Active"}>Active</MenuItem>
+                        <MenuItem value={"Finished"}>Finished</MenuItem>
+                        <MenuItem value={"Frozen"}>Frozen</MenuItem>
+                        <MenuItem value={"Wait for paid"}>
+                          Wait for paid
                         </MenuItem>
                       </Select>
                     </FormControl>
-                    <ErrorMessage
-                      name="status"
-                      component="div"
-                      className="error"
-                    />
                   </div>
                 </div>
               </div>
@@ -388,90 +417,59 @@ export default function NewSubscription() {
 
             <section className={style.form_section}>
               {/* Початкова дата */}
-              <div className="date_wrapper">
-                <div className="input_wrapper">
-                  <LocalizationProvider dateAdapter={AdapterDayjs}>
-                    <FormikDatePickerStart />
-                  </LocalizationProvider>
-
-                  <ErrorMessage
-                    name="startDate"
-                    component="div"
-                    className="error"
-                  />
+              <div className={style.input_tile}>
+                <div className={style.input_wrapper}>
+                  <div className={style.input_wrapper}>
+                    <label htmlFor="startDate" className={style.label}>
+                      <h4>Start subscription date</h4>
+                    </label>
+                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+                      <FormikDatePickerStart />
+                    </LocalizationProvider>
+                  </div>
                 </div>
               </div>
-
               {/* Метод оплати  */}
-              <div className="input_wrapper">
-                <div className="input_wrapper">
-                  <FormControl sx={{ m: 1, width: 226, margin: "0px" }}>
-                    <Select
-                      name="method"
-                      value={values.method}
-                      onChange={handleChange}
-                      displayEmpty
-                      inputProps={{ "aria-label": "Without label" }}
-                      MenuProps={{
-                        disableScrollLock: true,
-                      }}
-                      sx={{
-                        backgroundColor: "transparent",
-                        color: "rgba(255, 255, 255, 0.8)",
-
-                        padding: "12px 0",
-                        width: "226px",
-                        height: "49.5px",
-
-                        fontSize: "14px",
-
-                        borderRadius: "0",
-                        "& .MuiSelect-icon": {
-                          color: " rgba(255, 255, 255, 0.8)",
-                        },
-                        "&.Mui-focused .MuiSelect-icon": {
-                          color: " rgba(255, 255, 255, 0.8)",
-                        },
-
-                        "&:hover .MuiOutlinedInput-notchedOutline": {
-                          borderColor: "rgba(255, 255, 255, 1)", // яскравіше при ховері
-                        },
-                        ".MuiOutlinedInput-notchedOutline": {
-                          borderRadius: "6px",
-                          borderColor: " rgba(255, 255, 255, 0.8)",
-                        },
-                        "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                          borderWidth: "1px",
-                          borderColor: "rgba(255, 255, 255, 0.8);",
-                        },
-                      }}
-                    >
-                      <MenuItem value="">
-                        <em>Метод оплати</em>
-                      </MenuItem>
-                      <MenuItem value={"Готівка"}>Готівка</MenuItem>
-                      <MenuItem value={"Картка"}>Картка</MenuItem>
-                    </Select>
-                  </FormControl>
-                  <ErrorMessage
-                    name="method"
-                    component="div"
-                    className="error"
-                  />
+              <div className={style.input_tile}>
+                <div className={style.input_wrapper}>
+                  <div className={style.input_wrapper}>
+                    <label htmlFor="method" className={style.label}>
+                      <h4>Payment</h4>
+                    </label>
+                    <FormControl sx={{ m: 1, width: 226, margin: "0px" }}>
+                      <Select
+                        name="method"
+                        value={values.method}
+                        onChange={handleChange}
+                        displayEmpty
+                        inputProps={{ "aria-label": "Without label" }}
+                      >
+                        <MenuItem value="" disabled>
+                          <em>Method</em>
+                        </MenuItem>
+                        <MenuItem value={"Cash"}>Cash</MenuItem>
+                        <MenuItem value={"Card"}>Card</MenuItem>
+                        <MenuItem value={"Transfer"}>Transfer</MenuItem>
+                      </Select>
+                    </FormControl>
+                  </div>
                 </div>
               </div>
             </section>
 
             {/* Відправити */}
+
             <section className={style.form_section}>
-              <div className="finally_block">
-                <div className="price_value">
-                  <span>Сумма: {values.price}</span>
-                  <span>{values.currency}</span>
-                </div>
+              <div className={style.finally_block}>
                 <button type="submit" className={style.button}>
-                  Додати абонемент
+                  Add subscription
                 </button>
+                {price > 0 && (
+                  <div className={style.price_value}>
+                    <span>Price: {price}</span>
+                    <span>{values.currency}</span>
+                  </div>
+                )}
               </div>
             </section>
           </div>

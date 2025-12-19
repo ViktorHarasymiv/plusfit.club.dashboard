@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 
 import AvatarPicker from "../../AvatarPicker/AvatarPicker.jsx";
 
+import style from "../../../styles/Form.module.css";
+
 /* FORMIK */
 
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 
 /* MUI SELECT */
@@ -15,6 +17,9 @@ import Select from "@mui/material/Select";
 import { ADD_PHOTO } from "../../../services/portfolio.js";
 
 function NewPhoto() {
+  // STATE
+  const [previewUrl, setPreviewUrl] = useState("");
+
   // VALIDATION
 
   const initialValues = {
@@ -50,95 +55,70 @@ function NewPhoto() {
           }
 
           const res = await ADD_PHOTO(formData);
-
-          console.log(res);
         } catch (error) {
           console.log("error", error);
         }
+        setPreviewUrl("");
         resetForm();
       }}
     >
-      {({ values, handleChange }) => (
+      {({ values, touched, errors, handleChange }) => (
         <Form>
-          <div className="form_block">
-            <h2>Нове зоображення</h2>
-
-            <div className="input_wrapper">
-              {/* Про зоображення */}
-              <div className="input_wrapper">
-                <Field name="alt" placeholder="Введи опис" className="input" />
-                <ErrorMessage name="alt" component="div" className="error" />
+          <div className={style.form_block}>
+            <section className={style.form_section}>
+              <div className={style.input_tile}>
+                <div className={style.input_wrapper}>
+                  <Field
+                    name="alt"
+                    placeholder="Enter text"
+                    className={`${style.input} ${
+                      errors.name && touched.name ? style.error_input : ""
+                    }`}
+                  />
+                </div>
               </div>
-
               {/* Метод оплати */}
-              <div className="input_wrapper">
-                <FormControl sx={{ width: 240, margin: "0px" }}>
-                  <Select
-                    name="section"
-                    value={values.section}
-                    onChange={handleChange}
-                    displayEmpty
-                    inputProps={{ "aria-label": "Without label" }}
-                    MenuProps={{
-                      disableScrollLock: true,
-                    }}
-                    sx={{
-                      backgroundColor: "transparent",
-                      color: "rgba(255, 255, 255, 0.8)",
-
-                      padding: "12px 10px",
-                      width: "218px",
-                      height: "49.5px",
-
-                      fontSize: "16px",
-
-                      borderRadius: "0",
-                      "& .MuiSelect-icon": {
-                        color: " rgba(255, 255, 255, 0.8)",
-                      },
-                      "&.Mui-focused .MuiSelect-icon": {
-                        color: " rgba(255, 255, 255, 0.8)",
-                      },
-
-                      "&:hover .MuiOutlinedInput-notchedOutline": {
-                        borderColor: "rgba(255, 255, 255, 1)", // яскравіше при ховері
-                      },
-                      ".MuiOutlinedInput-notchedOutline": {
-                        borderRadius: "6px",
-                        borderColor: " rgba(255, 255, 255, 0.8)",
-                      },
-                      "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                        borderWidth: "1px",
-                        borderColor: "rgba(255, 255, 255, 0.8);",
-                      },
-                    }}
-                  >
-                    <MenuItem value="">
-                      <em>Обери секцію</em>
-                    </MenuItem>
-                    <MenuItem value={"Gym"}>Gym</MenuItem>
-                    <MenuItem value={"Fitness"}>Fitness</MenuItem>
-                    <MenuItem value={"Massage"}>Massage</MenuItem>
-                    <MenuItem value={"Rehabilitation"}>Rehabilitation</MenuItem>
-                    <MenuItem value={"Yoga"}>Yoga</MenuItem>
-                  </Select>
-                </FormControl>
-                <ErrorMessage
-                  name="section"
-                  component="div"
-                  className="error"
-                />
+              <div className={style.input_tile}>
+                <div className={style.input_wrapper}>
+                  <div className={style.input_wrapper}>
+                    <FormControl sx={{ width: "100%" }}>
+                      <Select
+                        name="section"
+                        value={values.section}
+                        onChange={handleChange}
+                        displayEmpty
+                        inputProps={{ "aria-label": "Without label" }}
+                      >
+                        <MenuItem value="">
+                          <em>Chose section</em>
+                        </MenuItem>
+                        <MenuItem value={"Gym"}>Gym</MenuItem>
+                        <MenuItem value={"Fitness"}>Fitness</MenuItem>
+                        <MenuItem value={"Massage"}>Massage</MenuItem>
+                        <MenuItem value={"Rehabilitation"}>
+                          Rehabilitation
+                        </MenuItem>
+                        <MenuItem value={"Yoga"}>Yoga</MenuItem>
+                      </Select>
+                    </FormControl>
+                  </div>
+                </div>
               </div>
-            </div>
-
+            </section>
             {/* Фото */}
-
-            <div className="input_wrapper">
-              <AvatarPicker name={"photo"} />
-              <ErrorMessage name="photo" component="div" className="error" />
-            </div>
-            <button className="button" type="submit">
-              Відправити
+            <section className={style.form_section}>
+              <div className={style.input_tile}>
+                <div className={style.input_wrapper}>
+                  <AvatarPicker
+                    name={"photo"}
+                    previewUrl={previewUrl}
+                    setPreviewUrl={setPreviewUrl}
+                  />
+                </div>
+              </div>
+            </section>
+            <button className={style.button} type="submit">
+              Add image
             </button>
           </div>
         </Form>

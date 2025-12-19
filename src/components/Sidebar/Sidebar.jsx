@@ -72,7 +72,11 @@ export default function Sidebar() {
         </button>
       </div>
       <div className={css.sidebar_profile}>
-        <img src={UserAvatar} alt="Avatar" className={css.avatar} />
+        <img
+          src={user.avatar || UserAvatar}
+          alt="Avatar"
+          className={css.avatar}
+        />
 
         <div
           className={css.profile_info}

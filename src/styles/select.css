@@ -28,9 +28,6 @@
   fill: var(--bs-body-color) !important;
 }
 
-.MuiFormControl-root {
-}
-
 .MuiInputLabel-root {
   top: -6px !important;
 

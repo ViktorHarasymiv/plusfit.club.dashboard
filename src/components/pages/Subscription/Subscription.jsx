@@ -5,6 +5,7 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 
 import clsx from "clsx";
 import css from "./Subscription.module.css";
+import base from "../../../styles/Base.module.css";
 
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { FaArrowRightLong } from "react-icons/fa6";
@@ -97,7 +98,7 @@ export default function Subscription() {
 
   return (
     <section className="section">
-      <div className={css.action_wrapper}>
+      <div className={base.action_wrapper}>
         <div className="buttons_wrapp">
           {tabsArray.map((item, i) => {
             return (
@@ -132,19 +133,21 @@ export default function Subscription() {
           )}
         </div>
       </div>
-      {isLoading ? (
-        <ClipLoader color="#ffffff" className={css.spiner_wrapp} />
-      ) : tab === 0 ? (
-        <AllSubscription
-          data={data}
-          deleteFn={deleteMutation}
-          updateMutation={updateMutation}
-          page={page}
-          setPage={setPage}
-        />
-      ) : tab === 1 ? (
-        <NewSubscription />
-      ) : null}
+      <div className={base.wrapper}>
+        {isLoading ? (
+          <ClipLoader color="#ffffff" className={css.spiner_wrapp} />
+        ) : tab === 0 ? (
+          <AllSubscription
+            data={data}
+            deleteFn={deleteMutation}
+            updateMutation={updateMutation}
+            page={page}
+            setPage={setPage}
+          />
+        ) : tab === 1 ? (
+          <NewSubscription />
+        ) : null}
+      </div>
     </section>
   );
 }

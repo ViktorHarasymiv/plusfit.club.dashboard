@@ -1,7 +1,8 @@
 @import url("./styles/root.css");
 @import url("./styles/button.css");
 @import url("./styles/tab.css");
-@import url("./styles//select.css");
+@import url("./styles/select.css");
+@import url("./styles/muiSetup.css");
 
 #root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;

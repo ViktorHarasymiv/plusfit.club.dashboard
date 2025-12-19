@@ -6,10 +6,9 @@ import { FaCloudUploadAlt } from "react-icons/fa";
 
 import css from "./AvatarPicker.module.css";
 
-const AvatarPicker = ({ name }) => {
+const AvatarPicker = ({ name, previewUrl, setPreviewUrl }) => {
   const inputRef = useRef(null);
   const [error, setError] = useState("");
-  const [previewUrl, setPreviewUrl] = useState("");
 
   const { setFieldValue } = useFormikContext();
 
@@ -44,14 +43,14 @@ const AvatarPicker = ({ name }) => {
           <img
             src={previewUrl}
             alt="Preview avatar"
-            width={300}
-            height={300}
+            width={500}
+            height={400}
             className={css.photo}
           />
         ) : (
           <h2 className={css.change_images}>
             <FaCloudUploadAlt />
-            Обери зоображення
+            Choose image
           </h2>
         )}
       </div>

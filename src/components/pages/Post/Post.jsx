@@ -4,12 +4,12 @@ import { useState } from "react";
 
 import clsx from "clsx";
 import base from "../../../styles/Base.module.css";
-import NewPhoto from "./NewPhoto";
 
 import { ClipLoader } from "react-spinners";
-import AllPhoto from "./AllPhoto";
+import AllPosts from "./AllPosts";
+import AddPost from "./AddPost";
 
-function Portfolio() {
+function Post() {
   const [isLoading] = useState(false);
   const [tab, setTab] = useState("1");
 
@@ -17,10 +17,9 @@ function Portfolio() {
     { id: "1", label: "All" },
     {
       id: "2",
-      label: "Add image",
+      label: "Create",
     },
   ];
-
   return (
     <section className="section">
       <div className={base.action_wrapper}>
@@ -42,13 +41,13 @@ function Portfolio() {
         {isLoading ? (
           <ClipLoader color="#ffffff" />
         ) : tab === "1" ? (
-          <AllPhoto />
+          <AllPosts />
         ) : tab === "2" ? (
-          <NewPhoto />
+          <AddPost />
         ) : null}
       </div>
     </section>
   );
 }
 
-export default Portfolio;
+export default Post;

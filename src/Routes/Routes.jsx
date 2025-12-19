@@ -10,6 +10,7 @@ import Trainers from "../components/pages/Trainers/Trainers";
 import Message from "../components/pages/Message/Message";
 import Portfolio from "../components/pages/Portfolio/Portfolio";
 import SliderHero from "../components/pages/SliderHero/SliderHero";
+import Post from "../components/pages/Post/Post";
 
 function Router() {
   return (
@@ -27,6 +28,7 @@ function Router() {
             <Route path="message" element={<Message />} />
             <Route path="slider" element={<SliderHero />} />
             <Route path="portfolio" element={<Portfolio />} />
+            <Route path="post" element={<Post />} />
           </Route>
         </Route>
 

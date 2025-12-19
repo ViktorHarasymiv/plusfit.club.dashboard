@@ -1,23 +1,40 @@
 .wrapper {
-  max-height: 74vh;
-
-  overflow-y: auto;
+  width: 100%;
+  max-height: 70vh;
+  overflow-y: scroll;
 
   display: flex;
-
   flex-wrap: wrap;
 
-  gap: 40px;
+  gap: 20px;
 }
 
 .images_block {
-  padding: 15px 25px;
+  width: 100%;
+}
 
-  border-radius: 5px;
-
-  border: 1px solid rgba(255, 255, 255, 0.8);
+.images_block p {
+  font-size: 14px;
+  color: var(--white);
 }
 
 .image {
+  width: 100%;
   object-fit: cover;
+}
+
+.action_wrapper {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+@media screen and (min-width: 991px) {
+  .wrapper {
+    width: fit-content;
+  }
+
+  .images_block {
+    width: 250px;
+  }
 }

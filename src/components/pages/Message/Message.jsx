@@ -4,11 +4,13 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useMessageStore } from "../../../store/messageStore";
 
 import clsx from "clsx";
+import base from "../../../styles/Base.module.css";
 import { ClipLoader } from "react-spinners";
 
 import AllMessage from "./AllMessage";
 import NewMessage from "./NewMessage";
 import ReadMessage from "./ReadMessage";
+import TableLine from "./TableLine";
 
 function Message() {
   const queryClient = useQueryClient();
@@ -74,20 +76,23 @@ function Message() {
 
   return (
     <section className="section">
-      <div className="buttons_wrapp">
-        {tabsArray.map((item, i) => {
-          return (
-            <button
-              key={i}
-              onClick={() => setTab(item.id)}
-              className={clsx("tabs_button", tab === item.id && "activeTab")}
-            >
-              {item.label}
-            </button>
-          );
-        })}
+      <div className={base.action_wrapper}>
+        <div className="buttons_wrapp">
+          {tabsArray.map((item, i) => {
+            return (
+              <button
+                key={i}
+                onClick={() => setTab(item.id)}
+                className={clsx("tabs_button", tab === item.id && "activeTab")}
+              >
+                {item.label}
+              </button>
+            );
+          })}
+        </div>
       </div>
-      <div className="section_content">
+      <div className={base.wrapper}>
+        <TableLine />{" "}
         {isLoading ? (
           <ClipLoader color="#ffffff" />
         ) : tab === "1" ? (
