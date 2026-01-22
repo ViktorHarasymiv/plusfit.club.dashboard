@@ -19,7 +19,9 @@
 
   border-radius: var(--bs-border-radius);
 
-  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition:
+    border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out;
 
   appearance: none;
   -webkit-appearance: none; /* для Safari */
@@ -27,14 +29,23 @@
 }
 
 .paragraph_wrapper {
+  margin-bottom: 20px;
+  width: 100%;
+
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 25px;
 }
 
 .paragraph_input_wrapper {
   display: flex;
   gap: 20px;
+}
+
+.full_width {
+  overflow: auto;
+
+  max-width: 100% !important;
 }
 
 .input:focus {
@@ -65,8 +76,16 @@
 }
 
 .textarea {
-  resize: none;
-  height: 100px;
+  padding: 0.5rem;
+
+  width: 250px;
+  height: 150px;
+
+  background: transparent;
+
+  border-radius: 6px;
+
+  color: inherit;
 }
 
 .form_block {
@@ -132,12 +151,15 @@
   padding-inline: 5px;
 
   max-width: fit-content;
+  height: 44px;
 
   background: var(--bs-primary);
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+  box-shadow:
+    rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
 
-  font-size: 14px;
+  font-size: 12px;
+  letter-spacing: 0.1em;
   color: white;
 
   border: none;

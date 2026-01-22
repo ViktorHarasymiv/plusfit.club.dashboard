@@ -37,13 +37,15 @@ function AllMessage({ data, handleToggleRead, handleDeleteMessage }) {
               </div>
               <div className={css.message}>{message}</div>
               <div className={css.time}>{formatted}</div>
-              <MdDelete
-                onClick={() => handleDeleteMessage(_id)}
-                style={{ fontSize: "22px", marginLeft: "15px" }}
-              />
+              <div className={css.action}>
+                <MdDelete
+                  onClick={() => handleDeleteMessage(_id)}
+                  style={{ fontSize: "22px", marginLeft: "15px" }}
+                />
+              </div>
             </li>
           );
-        }
+        },
       )}
     </ul>
   );

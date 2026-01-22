@@ -14,6 +14,10 @@ function AllPhoto() {
     fetchPortfolio();
   }, []);
 
+  const handleCopy = (value) => {
+    navigator.clipboard.writeText(value);
+  };
+
   return (
     <div className={css.wrapper}>
       {portfolio.map(({ _id, alt, section, photo }, index) => {
@@ -31,13 +35,22 @@ function AllPhoto() {
                 <p>{alt}</p>
                 <p>{section}</p>
               </div>
-              <button
-                type="button"
-                onClick={() => deletePhoto(_id, photo)}
-                className={style.button}
-              >
-                Delete
-              </button>
+              <div className={css.action_wrapper}>
+                <button
+                  type="button"
+                  className={style.button}
+                  onClick={() => handleCopy(photo)}
+                >
+                  Copy
+                </button>
+                <button
+                  type="button"
+                  onClick={() => deletePhoto(_id, photo)}
+                  className={style.button}
+                >
+                  Delete
+                </button>
+              </div>
             </div>
           </div>
         );

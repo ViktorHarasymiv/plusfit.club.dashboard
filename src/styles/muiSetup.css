@@ -1,13 +1,13 @@
-.css-er619e-MuiFormHelperText-root.Mui-error {
+.MuiFormHelperText-root.Mui-error {
   color: red !important;
 }
 
-.css-zsp0bh-MuiInputBase-root-MuiOutlinedInput-root.Mui-error
+.MuiInputBase-root-MuiOutlinedInput-root.Mui-error
   .MuiOutlinedInput-notchedOutline {
   border-color: inherit !important ;
 }
 
-.css-19qnlrw-MuiFormLabel-root-MuiInputLabel-root.Mui-error {
+.MuiFormLabel-root-MuiInputLabel-root.Mui-error {
   color: inherit !important;
 }
 
@@ -68,4 +68,14 @@
 
 .MuiPickersTextField-root .MuiInputLabel-root {
   color: var(--bs-body-color) !important;
+}
+
+/* Autocomplete */
+
+.MuiAutocomplete-root {
+  width: 100%;
+}
+
+.MuiOutlinedInput-root {
+  padding: 0px !important;
 }

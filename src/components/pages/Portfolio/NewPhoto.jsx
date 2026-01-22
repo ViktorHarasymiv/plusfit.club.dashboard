@@ -26,6 +26,7 @@ function NewPhoto() {
     alt: "",
     section: "",
     photo: null,
+    isPrivate: null,
   };
 
   const validationSchema = Yup.object({
@@ -34,6 +35,7 @@ function NewPhoto() {
       .min(2, "Мінімум 2 символи"),
     section: Yup.string().required("Секція обов'язкова"),
     photo: Yup.string().required("Фото обов'язкове"),
+    isPrivate: Yup.boolean().required("Обери приватність"),
   });
 
   return (
@@ -54,7 +56,7 @@ function NewPhoto() {
             console.log(`${key}:`, value);
           }
 
-          const res = await ADD_PHOTO(formData);
+          await ADD_PHOTO(formData);
         } catch (error) {
           console.log("error", error);
         }
@@ -68,6 +70,9 @@ function NewPhoto() {
             <section className={style.form_section}>
               <div className={style.input_tile}>
                 <div className={style.input_wrapper}>
+                  <label htmlFor="isPrivate" className={style.label}>
+                    <h4>Alternative text</h4>
+                  </label>
                   <Field
                     name="alt"
                     placeholder="Enter text"
@@ -77,10 +82,15 @@ function NewPhoto() {
                   />
                 </div>
               </div>
-              {/* Метод оплати */}
+
+              {/* Section */}
+
               <div className={style.input_tile}>
                 <div className={style.input_wrapper}>
                   <div className={style.input_wrapper}>
+                    <label htmlFor="isPrivate" className={style.label}>
+                      <h4>Choose section</h4>
+                    </label>
                     <FormControl sx={{ width: "100%" }}>
                       <Select
                         name="section"
@@ -99,6 +109,33 @@ function NewPhoto() {
                           Rehabilitation
                         </MenuItem>
                         <MenuItem value={"Yoga"}>Yoga</MenuItem>
+                      </Select>
+                    </FormControl>
+                  </div>
+                </div>
+              </div>
+
+              {/* isPrivate */}
+
+              <div className={style.input_tile}>
+                <div className={style.input_wrapper}>
+                  <div className={style.input_wrapper}>
+                    <label htmlFor="isPrivate" className={style.label}>
+                      <h4>Choose private</h4>
+                    </label>
+                    <FormControl sx={{ width: "100%", margin: "0px" }}>
+                      <Select
+                        name="isPrivate"
+                        value={values.isPrivate}
+                        onChange={handleChange}
+                        displayEmpty
+                        inputProps={{ "aria-label": "Without label" }}
+                      >
+                        <MenuItem value="">
+                          <em>Choose private</em>
+                        </MenuItem>
+                        <MenuItem value={true}>Yes</MenuItem>
+                        <MenuItem value={false}>No</MenuItem>
                       </Select>
                     </FormControl>
                   </div>

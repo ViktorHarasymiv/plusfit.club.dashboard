@@ -22,7 +22,7 @@ export default function Card({ user, deleteFn, updateMutation }) {
     return new Date(data).toLocaleDateString("uk-UA", options);
   };
 
-  const handleCopy = async (value) => {
+  const handleCopy = (value) => {
     navigator.clipboard.writeText(value);
   };
 

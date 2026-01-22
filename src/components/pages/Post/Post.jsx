@@ -20,6 +20,7 @@ function Post() {
       label: "Create",
     },
   ];
+
   return (
     <section className="section">
       <div className={base.action_wrapper}>
